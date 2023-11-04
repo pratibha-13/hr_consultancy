@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
-@section('title')  Our Client Say | @endsection
+@section('title')  Testimonial | @endsection
 @section('content')
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Our Client Say</h1>
+    <h1>Testimonial</h1>
     <ol class="breadcrumb">
       <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li class="active">Our Client Say</li>
+      <li class="active">Testimonial</li>
     </ol>
   </section>
   <!-- Main content -->

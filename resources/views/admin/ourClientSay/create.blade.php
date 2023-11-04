@@ -1,5 +1,5 @@
 @section('title')
-Add Our Client Say |
+Add Testimonial |
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ URL::asset('/resources/assets/admin/plugins/lightbox2-master/dist/css/lightbox.css')}}">
@@ -30,10 +30,10 @@ Add Our Client Say |
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Add Our Client Say</h1>
+        <h1>Add Testimonial</h1>
         <ol class="breadcrumb">
             <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Add New Our Client Say</li>
+            <li class="active">Add New Testimonial</li>
         </ol>
     </section>
     <section class="content">
@@ -43,7 +43,7 @@ Add Our Client Say |
                 <div class="col-sm-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Our Client Say Detail</h3>
+                            <h3 class="box-title">Testimonial Detail</h3>
                             {{-- <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                 </button>
