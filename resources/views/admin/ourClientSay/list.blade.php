@@ -18,7 +18,7 @@ Testimonial |
     <section class="content">
         <div class="row">
                 <div class="col-sm-2 pull-right" style="padding-bottom: 10px;">
-                    <a href="{{route('ourClientSay.create')}}"><button type="button" class="btn btn-block btn-primary">New Our Client Say</button></a>
+                    <a href="{{route('ourClientSay.create')}}"><button type="button" class="btn btn-block btn-primary">New Testimonial</button></a>
                 </div>
             <div class="col-xs-12">
                 <div class="box">
