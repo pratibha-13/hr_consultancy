@@ -18,20 +18,13 @@ class ContactUsController extends Controller
         return view('website.contactUs');
     }
 
-    public function store(Request $request)
+    public function contactStore(Request $request)
     {
-    //     return 1;
-    //    dd($request);
         $rules = [
-            // 'name' => 'required',
-            // 'email' => 'sometimes',
-            // 'phone_number' => 'sometimes',
-            // 'subject' => 'sometimes',
-            // 'description' => 'sometimes',
         ];
 
         $messages = [
-           
+
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -44,13 +37,12 @@ class ContactUsController extends Controller
             $contact = new ContactUs;
             $contact->name = $request->name;
             $contact->email = $request->email;
-            $contact->phone_number = $request->phone_number;
             $contact->subject = $request->subject;
-            $contact->description = $request->description;
+            $contact->message = $request->message;
             if ($contact->save()) {
               Session::flash('message', 'contactUs Added Succesfully !');
               Session::flash('alert-class', 'success');
-              return view('website.contactUs');
+              return view('website.contact');
             } else {
               Session::flash('message', 'Oops !! Something went wrong!');
               Session::flash('alert-class', 'error');

@@ -1,0 +1,111 @@
+<?php
+
+namespace App\DataTables;
+
+use App\OurTeam;
+use Yajra\DataTables\Services\DataTable;
+use App\Helper\GlobalHelper;
+use Auth;
+
+class OurTeamDataTable extends DataTable
+{
+    /**
+     * Build DataTable class.
+     *
+     * @param mixed $query Results from query() method.
+     * @return \Yajra\DataTables\DataTableAbstract
+     */
+    public function dataTable($query)
+    {
+        //dd($query);
+        return datatables($query)
+        ->addColumn('action', function ($ourTeam) {
+             $id = $ourTeam->our_team_id;
+
+                    $edit = '<a class="label label-success" href="' . route('ourTeam.edit',$id) . '"  title="Update"><i class="fa fa-edit"></i>&nbsp</a>';
+
+                    $delete = '<a class="label label-danger" href="javascript:;"  title="Delete" onclick="deleteConfirm('.$id.')"><i class="fa fa-trash"></i>&nbsp</a>';
+
+
+                    $view = '<a class="label label-primary" href="'. route('ourTeam.show',$id).'"  title="View"><i class="fa fa-eye"></i>&nbsp</a>';
+
+
+               return $view.' '. $edit .' '.$delete;
+            })
+        ->addColumn('status',  function($ourTeam) {
+            $id = $ourTeam->our_team_id;
+            $status = $ourTeam->status;
+            $class='text-danger';
+            $label='Deactive';
+            if($status==1)
+            {
+                $class='text-green';
+                $label='Active';
+            }
+
+                return  '<a class="'.$class.' actStatus" id = "user'.$id.'" data-sid="'.$id.'">'.$label.'</a>';
+
+        })
+
+        ->editcolumn('profile', function ($ourTeam) {
+            if ($ourTeam->profile) {
+                $image = "<img src=$ourTeam->profile style='vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;'>";
+            }
+            else{
+                $image = "<img src=' {{ URL::asset('/resources/assets/img/user.png')}}' style='vertical-align: middle;width: 50px;height: 50px;border-radius: 50%;'>";
+            }
+
+            return $image;
+        })
+
+        ->editColumn('created_at', function($ourTeam) {
+            return GlobalHelper::getFormattedDate($ourTeam->created_at);
+        })
+        ->rawColumns(['status','profile','action']);//->toJson();
+    }
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \App\Product $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(Product $model)
+    {
+        return $model->newQuery()->select('our_team_id', 'profile','status','created_at', 'updated_at');
+    }
+
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function html()
+    {
+        return $this->builder()
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                   ->addAction(['width' => '80px'])
+                    ->parameters($this->getBuilderParameters());
+    }
+
+    /**
+     * Get columns.
+     *
+     * @return array
+     */
+    protected function getColumns()
+    {
+        return ['our_team_id', 'profile','status','created_at', 'updated_at'
+        ];
+    }
+
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'OurTeam_' . date('YmdHis');
+    }
+}

@@ -95,13 +95,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group {{ $errors->has('google_link') ? ' has-error' : '' }}">
-                                    <label  class="col-sm-4 control-label" for="google_link">Google <span class="colorRed"> *</span></label>
+                                <div class="form-group {{ $errors->has('linkedIn_link') ? ' has-error' : '' }}">
+                                    <label  class="col-sm-4 control-label" for="linkedIn_link">LinkedIn <span class="colorRed"> *</span></label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="google_link" name="google_link" placeholder="google_link" value="@if(!empty(old('google_link'))){{old('google_link')}}@else{{$user->google_link}}@endif"/>
-                                        @if ($errors->has('google_link'))
+                                        <input type="text" class="form-control" id="linkedIn_link" name="linkedIn_link" placeholder="linkedIn_link" value="@if(!empty(old('linkedIn_link'))){{old('linkedIn_link')}}@else{{$user->linkedIn_link}}@endif"/>
+                                        @if ($errors->has('linkedIn_link'))
                                         <span class="help-block alert alert-danger">
-                                            <strong>{{ $errors->first('google_link') }}</strong>
+                                            <strong>{{ $errors->first('linkedIn_link') }}</strong>
                                         </span>
                                         @endif
                                     </div>
@@ -128,24 +128,14 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group {{ $errors->has('footer_description') ? ' has-error' : '' }}">
-                                    <label  class="col-sm-4 control-label" for="footer_description">Footer Description <span class="colorRed"> *</span></label>
+
+                                <div class="form-group {{ $errors->has('copyright') ? ' has-error' : '' }}">
+                                    <label  class="col-sm-4 control-label" for="copyright">Copyright <span class="colorRed"> *</span></label>
                                     <div class="col-sm-8">
-                                        <textarea id="footer_description" name="footer_description" class="form-control" value="{{old('footer_description')}}" placeholder=" Description">{{$user->footer_description}}</textarea>
-                                        @if ($errors->has('footer_description'))
+                                        <input type="text" class="form-control" id="copyright" name="copyright" placeholder="copyright" value="@if(!empty(old('copyright'))){{old('copyright')}}@else{{$user->copyright}}@endif"/>
+                                        @if ($errors->has('copyright'))
                                         <span class="help-block alert alert-danger">
-                                            <strong>{{ $errors->first('footer_description') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="form-group {{ $errors->has('order_placed_page_text') ? ' has-error' : '' }}">
-                                    <label  class="col-sm-4 control-label" for="order_placed_page_text">Order placed page text<span class="colorRed"> *</span></label>
-                                    <div class="col-sm-8">
-                                        <textarea id="order_placed_page_text" name="order_placed_page_text" class="form-control" value="{{old('order_placed_page_text')}}" placeholder="Description">{{$user->order_placed_page_text}}</textarea>
-                                        @if ($errors->has('order_placed_page_text'))
-                                        <span class="help-block alert alert-danger">
-                                            <strong>{{ $errors->first('order_placed_page_text') }}</strong>
+                                            <strong>{{ $errors->first('copyright') }}</strong>
                                         </span>
                                         @endif
                                     </div>

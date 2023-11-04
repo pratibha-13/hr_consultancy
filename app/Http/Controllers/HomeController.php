@@ -19,8 +19,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
-        $this->middleware('auth')->except('index');
+        $this->middleware('auth')->except('landingPage');
     }
 
     /**
@@ -28,13 +27,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function landingPage(Request $request)
     {
-        dd(2);
-        $ourClientSay=OurClientSay::where('status','1')->get();
-        return view('website.home', compact(['ourClientSay']));
+        // dd(1);
+        return view('website.home');
     }
-     
-   
+
+
 
 }

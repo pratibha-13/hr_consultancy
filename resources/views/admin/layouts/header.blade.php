@@ -1,9 +1,9 @@
 <header class="main-header">
-<?php $user = Auth::user(); 
-      $first_name = ucfirst($user->first_name);
+<?php $user = Auth::user();
+      $first_name = ucfirst($user->name);
       $last_name = ucfirst($user->last_name);
       $profile_image = $user->profile_image;
-      $profile_image_url = $profile_image == "" ? 
+      $profile_image_url = $profile_image == "" ?
                           '/resources/assets/admin/dist/img/user-placeholder.jpg':
                           $profile_image;
 ?>

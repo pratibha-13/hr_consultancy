@@ -26,33 +26,38 @@ class HeaderFooterSettingsController extends Controller
      */
     public function index(Builder $builder, HeaderFooterSettingsDataTable $dataTable)
     {
-        $html = $builder->columns([
-            ['data' => 'id', 'name' => 'id','title' => 'ID'],
-            ['data' => 'address', 'name' => 'address','title' => 'Address'],
-            ['data' => 'contact_number', 'name' => 'contact_number','title' => 'Contact Number'],
-            ['data' => 'email', 'name' => 'email','title' => 'Email'],
-            ['data' => 'facebook_link', 'name' => 'facebook_link','title' => 'Facebook'],
-            ['data' => 'google_link', 'name' => 'google_link','title' => 'Google'],
-            ['data' => 'twitter_link', 'name' => 'twitter_link','title' => 'Twitter'],
-            ['data' => 'instagram_link', 'name' => 'instagram_link','title' => 'Instagram'],
-            ['data' => 'created_at', 'name' => 'created_at','title' => 'Scaned At'],
-            ['data' => 'action', 'name' => 'action', 'orderable' => false, 'searchable' => false,'title' => 'Action'],
-        ])
-        ->parameters([
-            "scrollX" => true,
-            "order" => [[0, "desc"]]
-          ]);
+        // $html = $builder->columns([
+        //     ['data' => 'id', 'name' => 'id','title' => 'ID'],
+        //     ['data' => 'address', 'name' => 'address','title' => 'Address'],
+        //     ['data' => 'contact_number', 'name' => 'contact_number','title' => 'Contact Number'],
+        //     ['data' => 'email', 'name' => 'email','title' => 'Email'],
+        //     ['data' => 'facebook_link', 'name' => 'facebook_link','title' => 'Facebook'],
+        //     ['data' => 'google_link', 'name' => 'google_link','title' => 'Google'],
+        //     ['data' => 'twitter_link', 'name' => 'twitter_link','title' => 'Twitter'],
+        //     ['data' => 'instagram_link', 'name' => 'instagram_link','title' => 'Instagram'],
+        //     ['data' => 'created_at', 'name' => 'created_at','title' => 'Scaned At'],
+        //     ['data' => 'action', 'name' => 'action', 'orderable' => false, 'searchable' => false,'title' => 'Action'],
+        // ])
+        // ->parameters([
+        //     "scrollX" => true,
+        //     "order" => [[0, "desc"]]
+        //   ]);
 
 
-        $users = HeaderFooterSettings::all();
+        // $users = HeaderFooterSettings::all();
     //    dd($users);
 
-        if(request()->ajax()) {
-            return $dataTable->dataTable($users)->toJson();
+        // if(request()->ajax()) {
+        //     return $dataTable->dataTable($users)->toJson();
+        // }
+
+
+        // return view('admin.headerFooter.list',compact('html'));
+        $user = HeaderFooterSettings::find(1);
+        if(!empty($user)){
+
+            return view('admin.headerFooter.edit')->with(compact('user'));
         }
-
-
-        return view('admin.headerFooter.list',compact('html'));
     }
 
     /**
@@ -207,6 +212,12 @@ class HeaderFooterSettingsController extends Controller
             }
             if(isset($request['order_placed_page_text']) && $request['order_placed_page_text'] != ''){
                 $adminUser->order_placed_page_text = $request['order_placed_page_text'];
+            }
+            if(isset($request['whatsapp_link']) && $request['whatsapp_link'] != ''){
+                $adminUser->whatsapp_link = $request['whatsapp_link'];
+            }
+            if(isset($request['copyright']) && $request['copyright'] != ''){
+                $adminUser->copyright = $request['copyright'];
             }
 
 

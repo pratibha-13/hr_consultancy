@@ -12,8 +12,8 @@
                         <div class="p-3" style="max-width: 900px;">
                             <h5 class="text-white text-uppercase">Business Consultancy</h5>
                             <h1 class="display-1 text-white mb-md-4">We Provide Solution On Your Business</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
+                            <a href="{{route('quote')}}" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
+                            <a href="{{route('contact')}}" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
                         </div>
                     </div>
                 </div>
@@ -232,21 +232,28 @@
             <div class="col-lg-6 py-6 px-5">
                 <h1 class="display-5 mb-4">Request A Free Quote</h1>
                 <p class="mb-4">Kasd vero erat ea amet justo no stet, et elitr no dolore no elitr sea kasd et dolor diam tempor. Nonumy sed dolore no eirmod sit nonumy vero lorem amet stet diam at. Ea at lorem sed et, lorem et rebum ut eirmod gubergren, dolor ea duo diam justo dolor diam ipsum dolore stet stet elitr ut. Ipsum amet labore lorem lorem diam magna sea, eos sed dolore elitr.</p>
-                <form>
+                <form class="" id="" role="form" action="{{url('freeQuoteStore')}}" method="post" enctype="multipart/form-data" >
+                @csrf
                     <div class="row gx-3">
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="form-floating-1" placeholder="John Doe">
-                                <label for="form-floating-1">Full Name</label>
+                                <input type="text" name="full_company_name" class="form-control" id="form-floating-1" placeholder="John Doe">
+                                <label for="form-floating-1">Full Name/Company Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input type="email" name="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
                                 <label for="form-floating-2">Email address</label>
                             </div>
                         </div>
                         <div class="col-6">
+                            <div class="form-floating">
+                                <input type="text" name="contact_number" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <label for="form-floating-2">Contact number</label>
+                            </div>
+                        </div>
+                        <!-- <div class="col-6">
                             <div class="form-floating">
                                 <select class="form-select" id="floatingSelect" aria-label="Financial Consultancy">
                                     <option selected>Financial Consultancy</option>
@@ -255,9 +262,9 @@
                                 </select>
                                 <label for="floatingSelect">Select A Service</label>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-6">
-                            <button class="btn btn-primary w-100 h-100" type="submit">Request A Quote</button>
+                            <button id="submitBtn" name="submit" value="Submit" class="btn btn-primary w-100 h-100" type="submit">Request A Quote</button>
                         </div>
                     </div>
                 </form>
@@ -279,16 +286,20 @@
             <hr class="w-25 mx-auto bg-primary">
         </div>
         <div class="row g-5">
+        @if(count($ourTeam)>0)
+        @foreach($ourTeam as $key => $team)
             <div class="col-lg-4">
                 <div class="team-item position-relative overflow-hidden">
-                    <img class="img-fluid w-100" src="{{ URL::asset('/resources/assets/website/img/team-1.jpg')}}" alt="">
+                    <img class="img-fluid w-100" src="{{ $team->profile? $team->profile:URL::asset('/resources/assets/img/default.png')}}" alt="{{ $team->profile? $team->profile:URL::asset('/resources/assets/img/default.png')}}" style="height:250px;">
                     <div class="team-text w-100 position-absolute top-50 text-center bg-primary p-4">
-                        <h3 class="text-white">Full Name</h3>
-                        <p class="text-white text-uppercase mb-0">Designation</p>
+                        <h3 class="text-white">{{$team->full_name}}</h3>
+                        <p class="text-white text-uppercase mb-0">{{$team->designation}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+        @endforeach
+        @endif
+            <!-- <div class="col-lg-4">
                 <div class="team-item position-relative overflow-hidden">
                     <img class="img-fluid w-100" src="{{ URL::asset('/resources/assets/website/img/team-2.jpg')}}" alt="">
                     <div class="team-text w-100 position-absolute top-50 text-center bg-primary p-4">
@@ -305,7 +316,7 @@
                         <p class="text-white text-uppercase mb-0">Designation</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Team End -->
@@ -423,5 +434,22 @@
     </div>
     <!-- Blog End -->
 @endsection
+
+<link rel="stylesheet" href="{{ URL::asset('/resources/assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css')}}">
+<link rel="stylesheet" href="{{ URL::asset('/resources/assets/custom/image_cropping/prism.css')}}">
+<link rel="stylesheet" href="{{ URL::asset('/resources/assets/custom/image_cropping/sweetalert.css')}}">
+<link rel="stylesheet" href="{{ URL::asset('/resources/assets/custom/image_cropping/croppie.css')}}">
+<link rel="stylesheet" href="{{ URL::asset('/resources/assets/admin/plugins/lightbox2-master/dist/css/lightbox.css')}}">
+
+    <!-- <script src="{{URL::asset('resources/assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script> -->
+
+    @if(Session::has('message'))
+        <script>
+        $(function() {
+            toastr.{{ Session::get('alert-class') }}('{{ Session::get('message') }}');
+        });
+        </script>
+    @endif
+
 
 

@@ -1,3 +1,7 @@
+<?php
+use App\Helper\GlobalHelper;
+$header_list = GlobalHelper::header_list();
+?>
 <!-- START HEADER -->
     <!-- Topbar Start -->
     <div class="container-fluid bg-secondary ps-5 pe-0 d-none d-lg-block">
@@ -14,10 +18,10 @@
             <div class="col-md-6 text-center text-lg-end">
                 <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
                     <div class="me-3 pe-3 border-end py-2">
-                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>info@example.com</p>
+                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>{{$header_list['email']}}</p>
                     </div>
                     <div class="py-2">
-                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+012 345 6789</p>
+                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>{{$header_list['contact_number']}}</p>
                     </div>
                 </div>
             </div>
@@ -28,7 +32,7 @@
 
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
-        <a href="index.html" class="navbar-brand p-0">
+        <a href="{{route ('homepage') }}" class="navbar-brand p-0">
             <h1 class="m-0 text-uppercase text-primary"><i class="far fa-smile text-primary me-2"></i>consult</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
