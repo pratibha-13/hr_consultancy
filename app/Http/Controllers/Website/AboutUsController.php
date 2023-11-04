@@ -12,6 +12,7 @@ use Validator;
 use DB;
 use Session;
 use App\ContactUs;
+use App\OurClientSay;
 
 class AboutUsController extends Controller
 {
@@ -50,7 +51,8 @@ class AboutUsController extends Controller
     }
     public function getTestimonial(Request $request)
     {
-        return view('website.testimonial');
+        $ourClientSay=OurClientSay::where('status','1')->get();
+        return view('website.testimonial',compact('ourClientSay'));
     }
 
     public function store(Request $request)

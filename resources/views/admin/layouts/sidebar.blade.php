@@ -88,7 +88,7 @@
 
         <li class="@if(Request::is('admin/ourClientSay') ||Request::is('admin/ourClientSay/*') ) active @endif treeview">
           <a href="{{url('admin/ourClientSay')}}">
-            <i class="fa fa-globe"></i> <span>Our Client Say</span>
+            <i class="fa fa-globe"></i> <span>Testimonial</span>
           </a>
         </li>
     </ul>
