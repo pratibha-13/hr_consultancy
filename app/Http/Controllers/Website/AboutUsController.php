@@ -13,12 +13,14 @@ use DB;
 use Session;
 use App\ContactUs;
 use App\OurClientSay;
-
+use App\OurTeam;
 class AboutUsController extends Controller
 {
     public function getAbout(Request $request)
     {
-        return view('website.about');
+        $ourTeam=OurTeam::take(3)->orderBy('our_team_id','desc')->get();
+        // $about=CMSPage
+        return view('website.about',compact('ourTeam'));
     }
     public function getService(Request $request)
     {
