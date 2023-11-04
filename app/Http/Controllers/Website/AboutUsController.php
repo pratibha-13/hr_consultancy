@@ -69,7 +69,8 @@ class AboutUsController extends Controller
     }
     public function getTeam(Request $request)
     {
-        return view('website.team');
+        $ourTeam=OurTeam::orderBy('our_team_id','desc')->get();
+        return view('website.team',compact('ourTeam'));
     }
     public function getTestimonial(Request $request)
     {
