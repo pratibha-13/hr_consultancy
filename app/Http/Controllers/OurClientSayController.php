@@ -35,7 +35,7 @@ class OurClientSayController extends Controller
         $html = $builder->columns([
             ['data' => 'our_client_say_id', 'name' => 'our_client_say_id','title' => 'ID'],
             ['data' => 'our_client_say_name', 'name' => 'our_client_say_name','title' => 'Name'],
-            ['data' => 'our_client_say_city', 'name' => 'our_client_say_city','title' => 'City'],
+            ['data' => 'profession', 'name' => 'profession','title' => 'Profession'],
             ['data' => 'our_client_say_description', 'name' => 'our_client_say_description','title' => 'Description'],
             ['data' => 'status', 'name' => 'status','title' => 'Status'],
             ['data' => 'created_at', 'name' => 'created_at','title' => 'Scaned At'],
@@ -71,7 +71,7 @@ class OurClientSayController extends Controller
         } else {
             $record = new OurClientSay();
             $record->our_client_say_name = $request['our_client_say_name'];
-            $record->our_client_say_city = $request['our_client_say_city'];
+            $record->profession = $request['profession'];
             $record->our_client_say_description = $request['our_client_say_description'];
 
         if($request->file('image') != null){

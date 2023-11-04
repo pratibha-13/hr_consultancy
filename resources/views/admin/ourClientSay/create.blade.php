@@ -62,13 +62,13 @@ Add Our Client Say |
                                   </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('our_client_say_city') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="our_client_say_city">City <span class="colorRed"> *</span></label>
+                            <div class="form-group {{ $errors->has('profession') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="profession">Profession <span class="colorRed"> *</span></label>
                                 <div class="">
-                                    <input maxlength="100" type="text" id="our_client_say_city" name="our_client_say_city" class="form-control" value="{{old('our_client_say_city')}}" placeholder="City">
-                                    @if ($errors->has('our_client_say_city'))
+                                    <input maxlength="100" type="text" id="profession" name="profession" class="form-control" value="{{old('profession')}}" placeholder="Profession">
+                                    @if ($errors->has('profession'))
                                     <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('our_client_say_city') }}</strong>
+                                        <strong>{{ $errors->first('profession') }}</strong>
                                     </span>
                                     @endif
                                   </div>
@@ -199,11 +199,11 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-                     
+
 
                   },
                   messages: {
-                
+
                     },
                     errorPlacement: function(error, element) {
                         if(element.is('select')){
@@ -253,7 +253,7 @@ $("#cancelBtn").click(function () {
             }
         }
 
-       
+
         $('#Flip').click(function() {
             orientation = orientation == NORMAL ? FLIP : NORMAL;
             $uploadCrop1.croppie('bind', {
@@ -271,7 +271,7 @@ $("#cancelBtn").click(function () {
            $("#main_image").val("");
            $("#item-img-output").attr("src",SITE_URL + "/resources/assets/img/default.png");
         });
-     
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();

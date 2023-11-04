@@ -86,11 +86,11 @@
           </ul>
         </li>
 
-        <!-- <li class="@if(Request::is('admin/ourClientSay') ||Request::is('admin/ourClientSay/*') ) active @endif treeview">
+        <li class="@if(Request::is('admin/ourClientSay') ||Request::is('admin/ourClientSay/*') ) active @endif treeview">
           <a href="{{url('admin/ourClientSay')}}">
             <i class="fa fa-globe"></i> <span>Our Client Say</span>
           </a>
-        </li> -->
+        </li>
     </ul>
   </section>
   <!-- /.sidebar -->

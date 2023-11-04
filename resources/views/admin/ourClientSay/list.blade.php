@@ -17,7 +17,7 @@ Our Client Say |
     <!-- Main content -->
     <section class="content">
         <div class="row">
-                <div class="col-sm-2 pull-right" style="padding-bottom: 10px;"> 
+                <div class="col-sm-2 pull-right" style="padding-bottom: 10px;">
                     <a href="{{route('ourClientSay.create')}}"><button type="button" class="btn btn-block btn-primary">New Our Client Say</button></a>
                 </div>
             <div class="col-xs-12">
@@ -25,7 +25,7 @@ Our Client Say |
                     <!-- /.box-header -->
                     <div class="box-body">
                         {!! $html->table(['class' => 'table table-bordered','id'=>'datatable']) !!}
-                        
+
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -127,8 +127,8 @@ Our Client Say |
                             if(data== true && textStatus=='success' && xhr.status=='200'){
                                 toastr.warning('Our Client Say Deleted !!');
                                 $('#datatable').DataTable().ajax.reload(null, false);
-                            }else {  
-                                toastr.error(data); 
+                            }else {
+                                toastr.error(data);
                             }
                         }
                     });

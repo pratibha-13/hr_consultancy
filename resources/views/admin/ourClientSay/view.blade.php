@@ -31,7 +31,7 @@
                                             </tr>
                                             <tr>
                                                 <td><strong>City</strong></td>
-                                                <td class="text-primary">{{$record->our_client_say_city}}</td>
+                                                <td class="text-primary">{{$record->profession}}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Description</strong></td>
@@ -44,7 +44,7 @@
                                                         <a href="@if(isset($record))@if($record->getOriginal('our_client_say_profile')){{$record->our_client_say_profile}} @endif @else {{ URL::asset('/resources/assets/img/default.png')}} @endif " target="_blank">
                                                             <img src="@if(isset($record))@if($record->getOriginal('our_client_say_profile')){{$record->our_client_say_profile}} @endif @else {{ URL::asset('/resources/assets/img/default.png')}} @endif " class="gambar old_imageSub" id="item-img-output"  name="avatar" width="300px"/>
                                                         </a>
-                                                    </figure>     
+                                                    </figure>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -65,7 +65,7 @@
             </div>
             <div class="clearfix">
             </div>
-            
+
           </div>
           <!-- /.box -->
         </div>

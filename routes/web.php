@@ -105,6 +105,10 @@ Route::group(['middleware' => ['web']], function ()
 
 			//freequote
 			Route::resource('/freeQuote', 'FreeQuoteController');
+			//ourClientSay
+			Route::resource('/ourClientSay', 'OurClientSayController');
+			Route::get('/ourClientSay/delete/{id}', 'OurClientSayController@destroy');
+			Route::post('/ourClientSay/status-change', 'OurClientSayController@changeStatus');
 
 		});
 	});
