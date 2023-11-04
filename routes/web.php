@@ -47,7 +47,8 @@ Route::group(['middleware' => ['web']], function ()
 	Route::get('/contact', 'Website\AboutUsController@getContact')->name('contact');
 	Route::post('contactStore', 'Website\ContactUsController@contactStore');
 	Route::get('/blog', 'Website\AboutUsController@getBlog')->name('blog');
-	Route::get('/detail', 'Website\AboutUsController@getBlogDetail')->name('detail');
+	Route::get('/detail/{id}','Website\AboutUsController@blogDetail');
+	Route::post('commentStore', 'Website\AboutUsController@commentStore');
 	Route::get('/feature', 'Website\AboutUsController@getFeature')->name('feature');
 	Route::get('/quote', 'Website\AboutUsController@getQuote')->name('quote');
 	Route::get('/team', 'Website\AboutUsController@getTeam')->name('team');
@@ -105,10 +106,22 @@ Route::group(['middleware' => ['web']], function ()
 
 			//freequote
 			Route::resource('/freeQuote', 'FreeQuoteController');
+
 			//ourClientSay
 			Route::resource('/ourClientSay', 'OurClientSayController');
 			Route::get('/ourClientSay/delete/{id}', 'OurClientSayController@destroy');
 			Route::post('/ourClientSay/status-change', 'OurClientSayController@changeStatus');
+
+			//Category
+			Route::resource('/categories', 'CategoryController');
+			Route::get('/categories/delete/{id}', 'CategoryController@destroy');
+			Route::get('/check-category-exist', 'CategoryController@categoryExist');
+			Route::post('/categories/status-change', 'CategoryController@changeStatus')->name('offer-categories.change-status');
+
+			//ourClientSay
+			Route::resource('/blog', 'BlogController');
+			Route::get('/blog/delete/{id}', 'BlogController@destroy');
+			Route::post('/blog/status-change', 'BlogController@changeStatus');
 
 		});
 	});

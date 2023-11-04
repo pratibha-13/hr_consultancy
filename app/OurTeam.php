@@ -14,10 +14,10 @@ class OurTeam extends Model
             if(isset($value)) {
                 return (url('/resources/uploads/profile').'/').$value;
             }else{
-                return url('/resources/assets/img/default.png');
+                return url('/resources/assets/img/user.png');
             }
         }else {
-            return url('/resources/assets/img/default.png');
+            return url('/resources/assets/img/user.png');
         }
     }
 }

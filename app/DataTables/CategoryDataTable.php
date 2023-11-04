@@ -20,11 +20,11 @@ class CategoryDataTable extends DataTable
         return datatables($query)
         ->addColumn('action', function ($category) {
             $id=$category->category_id;
-           
+
                 $edit = '<a class="label label-success" href="' . url('admin/categories/'.$id.'/edit') . '"  title="View"><i class="fa fa-edit"></i>&nbsp</a>';
-            
+
                 $delete = '<a class="label label-danger" href="javascript:;"  title="Delete" onclick="deleteConfirm('.$id.')"><i class="fa fa-trash"></i>&nbsp</a>';
-            
+
             return $edit.' '.$delete.' ';
         })
         ->addColumn('status',  function($category) {
@@ -37,9 +37,9 @@ class CategoryDataTable extends DataTable
                 $class='text-green';
                 $label='Active';
             }
-          
+
                 return  '<a class="'.$class.' actStatus" id = "cat'.$id.'" data-sid="'.$id.'">'.$label.'</a>';
-            
+
         })
         ->editColumn('created_at', function($category) {
             return GlobalHelper::getFormattedDate($category->created_at);

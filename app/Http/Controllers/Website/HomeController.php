@@ -12,6 +12,7 @@ use Session;
 use Auth;
 use App\OurTeam;
 use App\OurClientSay;
+use App\Blog;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
     {
         $ourTeam=OurTeam::take(3)->orderBy('our_team_id','desc')->get();
         $ourClientSay=OurClientSay::where('status','1')->get();
-        return view('website.home',compact(['ourTeam','ourClientSay']));
+        $blog=Blog::where('status','1')->orderBy('blog_id','desc')->get();
+        return view('website.home',compact(['ourTeam','ourClientSay','blog']));
     }
 }

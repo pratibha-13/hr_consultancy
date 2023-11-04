@@ -28,8 +28,4 @@ class Category extends Model
      {
          return ucfirst($value);
      }
-
-     public function products(){
-        return $this->hasMany('App\Product','category_id','category_id')->where('status','1');
-     }
 }

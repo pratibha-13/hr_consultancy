@@ -31,8 +31,6 @@ class CategoryController extends Controller
             ['data' => 'category_id', 'name' => 'category_id','title' => 'ID'],
             ['data' => 'name', 'name' => 'name','title' => 'Name'],
             ['data' => 'status', 'name' => 'status','title' => 'Status'],
-            ['data' => 'is_header_show', 'name' => 'is_header_show','title' => 'Header Show'],
-            ['data' => 'is_footer_show', 'name' => 'is_footer_show','title' => 'Footer Show'],
             ['data' => 'created_at', 'name' => 'created_at','title' => 'Scaned At'],
             ['data' => 'action', 'name' => 'action', 'orderable' => false, 'searchable' => false,'title' => 'Action'],
         ])
@@ -83,8 +81,6 @@ class CategoryController extends Controller
         } else {
             $category = new Category();
             $category->name = $request->name;
-            $category->is_header_show = isset($request['is_header_show']) ? $request['is_header_show'] : '1';
-            $category->is_footer_show =isset($request['is_footer_show']) && !empty($request['is_footer_show']) ? $request['is_footer_show'] : '1';
             if($category->save()) {
                 Session::flash('message', 'Category added succesfully!');
                 Session::flash('alert-class', 'success');
@@ -146,12 +142,6 @@ class CategoryController extends Controller
             if(isset($request['name']) && $request['name'] != ''){
               $category->name = $request['name'];
             }
-            if(isset($request['is_header_show']) && $request['is_header_show'] != ''){
-              $category->is_header_show = $request['is_header_show'];
-          }
-          if(isset($request['is_footer_show']) && $request['is_footer_show'] != ''){
-            $category->is_footer_show = $request['is_footer_show'];
-        }
             if($category->save()) {
                 Session::flash('message', 'Category updated succesfully!');
                 Session::flash('alert-class', 'success');
@@ -182,53 +172,4 @@ class CategoryController extends Controller
     {
         return $this->UpdateStatus($request->id,Category::class,'status');
     }
-
-    public function getSubCategory(Request $request){
-        $subCategory = new SubCategory();
-        $subCategorys = $subCategory->getSubCategory($request->id);
-        $option = '<option></option>';
-        if(isset($request->sub_category) && !is_null($request->sub_category)) {
-          foreach($subCategorys as $subCategory) {
-            $option .= '<option value="'.$subCategory['sub_category_id'].'" '.(($request->sub_category == $subCategory['sub_category_id']) ? 'selected': '').'>'.$subCategory['name'].'</option>';
-          }
-        } else {
-          foreach($subCategorys as $subCategory) {
-            $option .= '<option value="'.$subCategory['sub_category_id'].'">'.$subCategory['name'].'</option>';
-          }
-        }
-
-        echo $option;
-      }
-      public function getsize(Request $request){
-        $size = new Size();
-        $sizes = $size->getsize($request->id);
-        $option = '<option></option>';
-        if(isset($request->size) && !is_null($request->size)) {
-          foreach($sizes as $size) {
-            $option .= '<option value="'.$size['size_id'].'" '.(($request->size == $size['size_id']) ? 'selected': '').'>'.$size['size_name'].'</option>';
-          }
-        } else {
-          foreach($sizes as $size) {
-            $option .= '<option value="'.$size['size_id'].'">'.$size['size_name'].'</option>';
-          }
-        }
-
-        echo $option;
-      }
-      public function getcolor(Request $request){
-        $color = new Color();
-        $colors = $color->getcolor($request->id);
-        $option = '<option></option>';
-        if(isset($request->color) && !is_null($request->color)) {
-          foreach($colors as $color) {
-            $option .= '<option value="'.$color['color_id'].'" '.(($request->color == $color['color_id']) ? 'selected': '').'>'.$color['color_name'].'</option>';
-          }
-        } else {
-          foreach($colors as $color) {
-            $option .= '<option value="'.$color['color_id'].'">'.$color['color_name'].'</option>';
-          }
-        }
-
-        echo $option;
-      }
 }

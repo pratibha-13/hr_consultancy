@@ -47,7 +47,6 @@ $header_list = GlobalHelper::header_list();
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
                         <a href="{{route ('blog') }}" class="dropdown-item">Blog Grid</a>
-                        <a href="{{route ('detail') }}" class="dropdown-item">Blog Detail</a>
                         <a href="{{route ('feature') }}" class="dropdown-item">Features</a>
                         <a href="{{route ('quote') }}" class="dropdown-item">Quote Form</a>
                         <a href="{{route ('team') }}" class="dropdown-item">The Team</a>

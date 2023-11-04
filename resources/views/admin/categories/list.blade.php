@@ -26,32 +26,6 @@
                 @endif
               </div>
             </div>
-            <div class="form-group {{ $errors->has('is_header_show') ? ' has-error' : '' }}">
-              <label  class="col-sm-4 control-label" for="is_header_show">Wants show on header menu</label>
-              <div class="col-sm-8">
-                <input class="form-check-input" type="radio" name="is_header_show" id="is_header_show" value="1">Yes
-              </br>
-                <input class="form-check-input" type="radio" name="is_header_show" id="is_header_show" value="0">No
-                @if ($errors->has('is_header_show'))
-                  <span class="help-block alert alert-danger">
-                    <strong>{{ $errors->first('is_header_show') }}</strong>
-                  </span>
-                @endif
-                </div>
-            </div>
-            <div class="form-group {{ $errors->has('is_footer_show') ? ' has-error' : '' }}">
-              <label  class="col-sm-4 control-label" for="is_footer_show">Wants show on Footer menu</label>
-              <div class="col-sm-8">
-                <input class="form-check-input" type="radio" name="is_footer_show" id="is_footer_show" value="1">Yes
-              </br>
-                <input class="form-check-input" type="radio" name="is_footer_show" id="is_footer_show" value="0">No
-                @if ($errors->has('is_footer_show'))
-                  <span class="help-block alert alert-danger">
-                    <strong>{{ $errors->first('is_footer_show') }}</strong>
-                  </span>
-                @endif
-                </div>
-            </div>
             <span class="help-block"> <span class="colorRed"> *</span> mentioned fields are mandatory.</span>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -217,31 +191,5 @@
       }
     })
   }
-
-  $(document.body).on('change', "#state", function(){
-    var id = $('#state').val();
-    if (id != '') {
-      $.ajax({
-        url: SITE_URL + '/getCity/'+id,
-        success: function (data) {
-          if (data != '') {
-            $('select[name="city"]').empty();
-            $('select[name="city"]').append('<option value="">Please select</option>');
-            $.each(data, function (i) {
-              $('select[name="city"]').append('<option value="' + data[i].cityId + '">' + data[i].cityName + '</option>');
-            });
-
-          } else {
-            $('select[name="city"]').empty();
-            $('select[name="city"]').append('<option value="">Please select</option>');
-          }
-        }
-      });
-    } else {
-      $('select[name="city"]').empty();
-      $('select[name="city"]').append('<option value="">Please select</option>');
-    }
-
-  });
 </script>
 @endsection

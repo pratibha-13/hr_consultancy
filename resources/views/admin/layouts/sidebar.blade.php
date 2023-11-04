@@ -30,12 +30,16 @@
             <i class="fa fa-user-circle-o"></i> <span>Free Quote</span>
           </a>
         </li>
-        <!-- <li class="@if(Request::is('admin/homePageSlider') ||Request::is('admin/homePageSlider/*') ) active @endif treeview">
-          <a href="{{url('admin/homePageSlider')}}">
-            <i class="fa fa-globe"></i> <span>Home Page Slider</span>
+        <li class="@if(Request::is('admin/categories') ||Request::is('admin/categories/*') ) active @endif treeview">
+          <a href="{{url('admin/categories')}}">
+            <i class="fa fa-globe"></i> <span>Category</span>
           </a>
-        </li> -->
-
+        </li>
+        <li class="@if(Request::is('admin/blog') ||Request::is('admin/blog/*') ) active @endif treeview">
+          <a href="{{url('admin/blog')}}">
+            <i class="fa fa-globe"></i> <span>Blog</span>
+          </a>
+        </li>
         <li class="@if(Request::is('admin/contact-us-messages') ||Request::is('admin/contact-us-messages/*') ) active @endif treeview">
           <a href="{{url('admin/contact-us-messages')}}">
             <i class="fa fa-envelope" aria-hidden="true"></i> <span>Contact Us Messages</span>
