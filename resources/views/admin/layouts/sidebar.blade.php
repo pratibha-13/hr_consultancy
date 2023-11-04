@@ -30,11 +30,11 @@
             <i class="fa fa-user-circle-o"></i> <span>Free Quote</span>
           </a>
         </li>
-        <li class="@if(Request::is('admin/homePageSlider') ||Request::is('admin/homePageSlider/*') ) active @endif treeview">
+        <!-- <li class="@if(Request::is('admin/homePageSlider') ||Request::is('admin/homePageSlider/*') ) active @endif treeview">
           <a href="{{url('admin/homePageSlider')}}">
             <i class="fa fa-globe"></i> <span>Home Page Slider</span>
           </a>
-        </li>
+        </li> -->
 
         <li class="@if(Request::is('admin/contact-us-messages') ||Request::is('admin/contact-us-messages/*') ) active @endif treeview">
           <a href="{{url('admin/contact-us-messages')}}">
@@ -86,11 +86,11 @@
           </ul>
         </li>
 
-        <li class="@if(Request::is('admin/ourClientSay') ||Request::is('admin/ourClientSay/*') ) active @endif treeview">
+        <!-- <li class="@if(Request::is('admin/ourClientSay') ||Request::is('admin/ourClientSay/*') ) active @endif treeview">
           <a href="{{url('admin/ourClientSay')}}">
             <i class="fa fa-globe"></i> <span>Our Client Say</span>
           </a>
-        </li>
+        </li> -->
     </ul>
   </section>
   <!-- /.sidebar -->
