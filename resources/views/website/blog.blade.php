@@ -1,5 +1,5 @@
 @extends('weblayout.app')
-@section('title', 'Home')
+@section('title', 'Blog')
 @section('content')
 
 

@@ -17,6 +17,7 @@ use App\OurTeam;
 use App\Blog;
 use App\Category;
 use App\BlogComment;
+use App\FAQ;
 class AboutUsController extends Controller
 {
     public function getAbout(Request $request)
@@ -29,7 +30,22 @@ class AboutUsController extends Controller
     {
         return view('website.service');
     }
-
+    public function getPrivacyPolicy()
+    {
+        $privacyPolicy = CMSPage::where('slug','privacy-policy')->first();
+        return view('website.privacyPolicy')->with(compact('privacyPolicy'));
+    }
+    public function getTerms()
+    {
+        $terms = CMSPage::where('slug','terms-and-conditions')->first();
+        return view('website.termsConditions')->with(compact('terms'));
+    }
+    public function getFaq()
+    {
+        $generalFaq = FAQ::where('type','general')->get();
+        $otherFaq = FAQ::where('type','other')->get();
+        return view('website.faq', compact(['generalFaq','otherFaq']));
+    }
     public function getContact(Request $request)
     {
         return view('website.contact');

@@ -62,12 +62,12 @@
                       <i class="fa fa-pencil-square-o"></i> <span>CMS Pages</span>
                   </a>
               </li>
-              <!-- <li class="@if(Request::is('admin/faq') ||Request::is('admin/faq/*') ) active @endif treeview">
+              <li class="@if(Request::is('admin/faq') ||Request::is('admin/faq/*') ) active @endif treeview">
                   <a href="{{url('admin/faq')}}">
                       <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                       <span>Help (FAQ)</span>
                   </a>
-              </li> -->
+              </li>
           </ul>
         </li>
 
