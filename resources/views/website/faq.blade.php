@@ -50,7 +50,7 @@
         margin-bottom: 15px;
     }
     p {
-        color: #687188;
+        color: white;
         line-height: 28px;
         margin-bottom: 25px;
     }
