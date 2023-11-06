@@ -40,20 +40,20 @@ $header_list = GlobalHelper::header_list();
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 me-n3">
-                <a href="{{route ('homepage') }}" class="nav-item nav-link active">Home</a>
-                <a href="{{route ('about') }}" class="nav-item nav-link">About</a>
-                <a href="{{route ('service') }}" class="nav-item nav-link">Service</a>
+                <a href="{{route ('homepage') }}" class="nav-item nav-link  @if(request()->is('/')) active @endif">Home</a>
+                <a href="{{route ('about') }}" class="nav-link nav_item {{ (request()->is('about')) ? 'active' : '' }}">About</a>
+                <a href="{{route ('service') }}" class="nav-link nav_item {{ (request()->is('service')) ? 'active' : '' }}">Service</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle {{ (request()->is('blog')) ? 'active' : '' }}" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
-                        <a href="{{route ('blog') }}" class="dropdown-item">Blog Grid</a>
-                        <a href="{{route ('feature') }}" class="dropdown-item">Features</a>
-                        <a href="{{route ('quote') }}" class="dropdown-item">Quote Form</a>
-                        <a href="{{route ('team') }}" class="dropdown-item">The Team</a>
-                        <a href="{{route ('testimonial') }}" class="dropdown-item">Testimonial</a>
+                        <a href="{{route ('blog') }}" class="dropdown-item {{ (request()->is('blog')) ? 'active' : '' }}">Blog Grid</a>
+                        <a href="{{route ('feature') }}" class="dropdown-item {{ (request()->is('feature')) ? 'active' : '' }}">Features</a>
+                        <a href="{{route ('quote') }}" class="dropdown-item {{ (request()->is('quote')) ? 'active' : '' }}">Quote Form</a>
+                        <a href="{{route ('team') }}" class="dropdown-item {{ (request()->is('team')) ? 'active' : '' }}">The Team</a>
+                        <a href="{{route ('testimonial') }}" class="dropdown-item {{ (request()->is('testimonial')) ? 'active' : '' }}">Testimonial</a>
                     </div>
                 </div>
-                <a href="{{route ('contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{route ('contact') }}" class="nav-link nav_item {{ (request()->is('contact')) ? 'active' : '' }}">Contact</a>
             </div>
         </div>
     </nav>

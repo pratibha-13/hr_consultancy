@@ -55,6 +55,12 @@
             </div>
         </div>
     </div>
+    @else
+    <div class="container-fluid py-6 px-5">
+        <div class="text-center mx-auto mb-5" style="max-width: 600px;">
+            <h1 class="display-5 mb-0">No Records</h1>
+        </div>
+    </div>
     @endif
     <!-- Testimonial End -->
 
