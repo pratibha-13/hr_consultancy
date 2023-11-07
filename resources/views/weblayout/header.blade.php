@@ -44,7 +44,7 @@ $header_list = GlobalHelper::header_list();
                 <a href="{{route ('about') }}" class="nav-link nav_item {{ (request()->is('about')) ? 'active' : '' }}">About</a>
                 <a href="{{route ('service') }}" class="nav-link nav_item {{ (request()->is('service')) ? 'active' : '' }}">Service</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle {{ (request()->is('blog')) ? 'active' : '' }}" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle {{ (request()->is('blog')) ||(request()->is('feature')) ||(request()->is('quote')) ||(request()->is('team')) || (request()->is('testimonial')) ? 'active' : '' }}" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
                         <a href="{{route ('blog') }}" class="dropdown-item {{ (request()->is('blog')) ? 'active' : '' }}">Blog Grid</a>
                         <a href="{{route ('feature') }}" class="dropdown-item {{ (request()->is('feature')) ? 'active' : '' }}">Features</a>

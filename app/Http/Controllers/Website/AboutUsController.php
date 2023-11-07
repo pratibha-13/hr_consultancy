@@ -52,7 +52,8 @@ class AboutUsController extends Controller
     }
     public function getBlog(Request $request)
     {
-        $blog=Blog::where('status','1')->orderBy('blog_id','desc')->get();
+        $blogData=Blog::where('status','1')->orderBy('blog_id','desc');
+        $blog = $blogData->paginate(10);
         $category = Category::where('status','1')->get();
         return view('website.blog',compact('blog','category'));
     }
