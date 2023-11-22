@@ -202,7 +202,12 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-
+                        "blog_title":{
+                          required : true
+                        },
+                        "blog_description":{
+                          required : true
+                        },
 
                   },
                   messages: {

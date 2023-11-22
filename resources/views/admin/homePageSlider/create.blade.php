@@ -51,9 +51,9 @@ Add New Home Page Slider |
                         </div>
                         <div class="box-body">
                             <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="title">Title</span></label>
+                                <label  class=" control-label" for="title">Title</span></label><span class="colorRed"> *</span>
                                 <div class="">
-                                    <input maxlength="100" type="text" id="title" name="title" class="form-control" value="{{old('title')}}" placeholder="Product Name">
+                                    <input maxlength="100" type="text" id="title" name="title" class="form-control" value="{{old('title')}}" placeholder="Title">
                                     @if ($errors->has('title'))
                                     <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('title') }}</strong>
@@ -63,9 +63,9 @@ Add New Home Page Slider |
                             </div>
 
                             <div class="form-group {{ $errors->has('short_description') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="short_description">Short Description </label>
+                                <label  class=" control-label" for="short_description">Short Headline </label>
                                 <div class="">
-                                    <textarea id="short_description" name="short_description" class="form-control" value="{{old('short_description')}}" placeholder="Description">{{ old('short_description') }}</textarea>
+                                    <input type="text" id="short_description" name="short_description" class="form-control" value="{{old('short_description')}}" placeholder="Short Headline">
                                     @if ($errors->has('short_description'))
                                     <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('short_description') }}</strong>
@@ -73,62 +73,6 @@ Add New Home Page Slider |
                                     @endif
                                   </div>
                             </div>
-
-                            <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="category">Category <span class="colorRed"> *</span></label>
-                                    <div class="">
-
-                                    <select name="category" class="form-control categoryForProduct" id="category" data-old="{{old('category')}}">
-                                      <option></option>
-                                      @foreach($category as $value)
-                                      <option value="{{ $value->category_id }}">{{ $value->name}}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('category'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('category') }}</strong>
-                                    </span>
-                                    @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group {{ $errors->has('sub_category') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="sub_category">Sub Category</label>
-                                    <div>
-                                        <select name="sub_category" class="form-control" id="sub_category" data-old="{{old('sub_category')}}">
-                                      <option></option>
-                                      @foreach($subCategory as $value)
-                                      <option value="{{ $value->sub_category_id }}">{{ $value->name}}</option>
-                                      @endforeach
-                                    </select>
-
-                                        @if ($errors->has('sub_category'))
-                                        <span class="help-block alert alert-danger">
-                                            <strong>{{ $errors->first('sub_category') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="form-group {{ $errors->has('product') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="product">Product</label>
-                                    <div>
-                                        <select name="product" class="form-control productForCat" id="product" data-old="{{old('product')}}">
-                                      <option></option>
-                                      @foreach($product as $value)
-                                      <option value="{{ $value->product_id }}">{{ $value->product_name}}</option>
-                                      @endforeach
-                                    </select>
-
-                                        @if ($errors->has('product'))
-                                        <span class="help-block alert alert-danger">
-                                            <strong>{{ $errors->first('product') }}</strong>
-                                        </span>
-                                        @endif
-                                    </div>
-                                </div>
-
-
 
                             <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
                                 <label for="" class=" control-label post_data_label" >Image</label><span class="colorRed"> *</span> <br>
@@ -147,27 +91,6 @@ Add New Home Page Slider |
                                     @endif
                                 </div>
                               </div>
-
-                            <div class="form-group">
-                            <label>Slider Selection <span class="colorRed"> *</span></label>
-                            </div>
-                              <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="main"> Main Slider</br>
-                                <label>Image should be 1920*500 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="first"> First Slider</br>
-                                <label>Image should be 540*300 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="second"> Second Slider</br>
-                                <label>Image should be 420*460 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="third"> Third Slider</br>
-                                <label>Image should be 255*350 Size</label>
-                            </div>
-
                             <span class="help-block"> <span class="colorRed"> *</span> mentioned fields are mandatory.</span>
                             <div class="col-sm-12">
                                 <div class="" style="border-top:0">
@@ -263,10 +186,7 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-                        "category":{
-                          required : true
-                        },
-                        "slider_selection":{
+                        "title":{
                           required : true
                         },
                         "image":{
@@ -359,78 +279,5 @@ $("#cancelBtn").click(function () {
     $("#image").change(function () {
         readURL(this);
     });
-
-    $(document).ready(function() {
-      $("#category").select2({
-          placeholder: "Select Category",
-          allowClear: true,
-      });
-    });
-    $(document).ready(function() {
-      $("#sub_category").select2({
-          placeholder: "Select SubCategory",
-          allowClear: true,
-      });
-    });
-    $(document).ready(function() {
-      $("#product").select2({
-          placeholder: "Select Product",
-          allowClear: true,
-      });
-    });
-
-    $('#category').on('change', function(){
-        var id = $('#category').val();
-
-        $.ajax({
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: SITE_URL+'/getSubCategory',
-            data: {
-                id
-            },
-            success: function(data) {
-                $('#sub_category').html(data);
-            }
-        });
-        });
-
-        $('.categoryForProduct').on('change', function(){
-        var id = $('.categoryForProduct').val();
-
-        $.ajax({
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: SITE_URL+'/getProduct',
-            data: {
-                id
-            },
-            success: function(data) {
-                $('.productForCat').html(data);
-            }
-        });
-        });
-
-        $('#sub_category').on('change', function(){
-        var id = $('#sub_category').val();
-
-        $.ajax({
-            type: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            url: SITE_URL+'/getProductForSub',
-            data: {
-                id
-            },
-            success: function(data) {
-                $('#product').html(data);
-            }
-        });
-        });
 </script>
 @endsection

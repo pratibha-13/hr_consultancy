@@ -111,10 +111,22 @@ Route::group(['middleware' => ['web']], function ()
 			Route::get('/categories/delete/{id}', 'CategoryController@destroy');
 			Route::get('/check-category-exist', 'CategoryController@categoryExist');
 			Route::post('/categories/status-change', 'CategoryController@changeStatus')->name('offer-categories.change-status');
-			//ourClientSay
+			//blog
 			Route::resource('/blog', 'BlogController');
 			Route::get('/blog/delete/{id}', 'BlogController@destroy');
 			Route::post('/blog/status-change', 'BlogController@changeStatus');
+			//blogComment
+			Route::resource('/blogComment', 'BlogCommentController');
+			Route::get('/blogComment/delete/{id}', 'BlogCommentController@destroy');
+			Route::post('/blogComment/status-change', 'BlogCommentController@changeStatus');
+			//service
+			Route::resource('/service', 'ServiceController');
+			Route::get('/service/delete/{id}', 'ServiceController@destroy');
+			Route::post('/service/status-change', 'ServiceController@changeStatus');
+			//home page slider
+			Route::resource('/homePageSlider', 'HomePageSliderController');
+			Route::get('/homePageSlider/delete/{id}', 'HomePageSliderController@destroy');
+			Route::post('/homePageSlider/status-change', 'HomePageSliderController@changeStatus');
 		});
 	});
 });

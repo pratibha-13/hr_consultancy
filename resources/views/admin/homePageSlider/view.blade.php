@@ -30,52 +30,11 @@
                                                 <td><strong>Title</strong></td>
                                                 <td class="text-primary">{{$result->title}}</td>
                                             </tr>
-                                            @php
-                                            $category = Helper::category($result['category']);
-                                            $sub_category = Helper::subCategory($result['sub_category']);
-                                            $product = Helper::product($result['product']);
-                                            @endphp
-
                                             <tr>
-                                                <td><strong>Category</strong></td>
-                                                <td class="text-primary">{{$category}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Sub Category</strong></td>
-                                                <td class="text-primary">{{$sub_category}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Product</strong></td>
-                                                <td class="text-primary">{{$product}}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Short Description</strong></td>
+                                                <td><strong>Short Headline</strong></td>
                                                 <td class="text-primary">{{$result->short_description}}</td>
                                             </tr>
 
-                                            @if($result->slider_selection=="main")
-                                            <tr>
-                                            <td><strong>Main Slider</strong></td>
-                                            </tr>
-                                            @endif
-
-                                            @if($result->slider_selection=="first")
-                                            <tr>
-                                            <td><strong>First Slider</strong></td>
-                                            </tr>
-                                            @endif
-
-
-                                            @if($result->slider_selection=="second")
-                                            <tr>
-                                            <td><strong>Second Slider</strong></td>
-                                            </tr>
-                                            @endif
-                                            @if($result->slider_selection=="third")
-                                            <tr>
-                                            <td><strong>Third Slider</strong></td>
-                                            </tr>
-                                            @endif
                                     @if($result->image != null)
                                     <tr>
                                         <td><strong>Image</strong></td>

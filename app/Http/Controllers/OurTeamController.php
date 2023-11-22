@@ -59,7 +59,8 @@ class OurTeamController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-
+            'full_name' => 'required',
+            'designation' => 'required',
         );
         $messages = [
         ];
@@ -124,7 +125,8 @@ class OurTeamController extends Controller
     public function update(Request $request)
     {
         $rules = array(
-
+            'full_name' => 'required',
+            'designation' => 'required',
         );
         $messages = [
 

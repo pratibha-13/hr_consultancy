@@ -61,7 +61,9 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-
+            'blog_title' => 'required',
+            'blog_description' => 'required',
+            'blog_image' => 'required',
         );
         $messages = [
         ];
@@ -134,7 +136,8 @@ class BlogController extends Controller
     public function update(Request $request)
     {
         $rules = array(
-
+            'blog_title' => 'required',
+            'blog_description' => 'required',
         );
         $messages = [
 

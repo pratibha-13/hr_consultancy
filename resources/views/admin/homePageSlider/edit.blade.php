@@ -64,78 +64,16 @@ Home Page Slider Detail |
                             </div>
 
                             <div class="form-group {{ $errors->has('short_description') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="short_description"> Short Description </label>
+                                <label  class=" control-label" for="short_description">Short Headline</label>
                                 <div class="">
-                                    <textarea id="short_description" name="short_description" class="form-control" value="{{old('short_description')}}" placeholder=" Description">{{$result->short_description}}</textarea>
+                                    <input maxlength="100" type="text" id="short_description" name="short_description" class="form-control" value="@if(!empty(old('short_description'))){{old('short_description')}}@else{{$result->short_description}}@endif" placeholder="Type headline here">
                                     @if ($errors->has('short_description'))
                                     <span class="help-block alert alert-danger">
                                         <strong>{{ $errors->first('short_description') }}</strong>
                                     </span>
                                     @endif
-                                  </div>
+                                </div>
                             </div>
-
-                            <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="category">Category <span class="colorRed"> *</span></label>
-                                    <div class="">
-                                    <?php
-                                        $chkk = explode(',', $result->category);
-                                    ?>
-                                    <select name="category" class="form-control categoryForProduct" id="category">
-                                      <option></option>
-                                      @foreach($category as $value)
-                                      <option value="{{ $value->category_id }}" @if(in_array($value->category_id, $chkk)) selected @endif>{{ $value->name }}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('category'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('category') }}</strong>
-                                    </span>
-                                    @endif
-                                    </div>
-                            </div>
-
-                            <div class="form-group {{ $errors->has('sub_category') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="sub_category">Sub Category</label>
-                                    <div class="">
-                                    <?php
-                                        $chkkk = explode(',', $result->sub_category);
-                                    ?>
-
-                                    <select name="sub_category" class="form-control" id="sub_category">
-                                      <option></option>
-                                      @foreach($subCategory as $value)
-                                      <option value="{{ $value['sub_category_id'] }}" @if(in_array($value['sub_category_id'], $chkkk)) selected @endif>{{ $value['name'] }}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('sub_category'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('sub_category') }}</strong>
-                                    </span>
-                                    @endif
-                                    </div>
-                            </div>
-
-                            <div class="form-group {{ $errors->has('product') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="product">Product</label>
-                                    <div class="">
-                                    <?php
-                                        $chkk = explode(',', $result->product);
-                                    ?>
-                                    <select name="product" class="form-control productForCat" id="product">
-                                      <option></option>
-                                      @foreach($product as $value)
-                                      <option value="{{ $value->product_id }}" @if(in_array($value->product_id, $chkk)) selected @endif>{{ $value->product_name }}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('product'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('product') }}</strong>
-                                    </span>
-                                    @endif
-                                    </div>
-                            </div>
-
 
                             <div class="form-group">
                                 <label for="" class=" control-label post_data_label" >Image</label><span class="colorRed"> *</span> <br>
@@ -150,26 +88,6 @@ Home Page Slider Detail |
                                     </label>
                                 </div>
                             </div>
-                            <div class="form-group">
-                            <label>Slider Selection <span class="colorRed"> *</span></label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="main" {{ $result->slider_selection=="main"? 'checked':'' }}> Main Slider</br>
-                                <label>Image should be 1920*500 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="first" {{ $result->slider_selection=="first"? 'checked':'' }}> First Slider</br>
-                                <label>Image should be 540*300 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="second" {{ $result->slider_selection=="second"? 'checked':'' }}> Second Slider</br>
-                                <label>Image should be 420*460 Size</label>
-                            </div>
-                            <div class="form-group {{ $errors->has('slider_selection') ? ' has-error' : '' }}">
-                                <input type="radio" name="slider_selection" value="third" {{ $result->slider_selection=="third"? 'checked':'' }}> Third Slider</br>
-                                <label>Image should be 255*350 Size</label>
-                            </div>
-
                             <span class="help-block"> <span class="colorRed"> *</span> mentioned fields are mandatory.</span>
                             <div class="col-sm-12">
                                 <div class="" style="border-top:0">

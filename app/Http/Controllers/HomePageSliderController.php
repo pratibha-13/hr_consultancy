@@ -39,10 +39,8 @@ class HomePageSliderController extends Controller
     {
         $html = $builder->columns([
             ['data' => 'home_page_slider_id', 'name' => 'home_page_slider.home_page_slider_id','title' => 'ID'],
+            ['data' => 'short_description', 'name' => 'home_page_slider.short_description','title' => 'Short Headline'],
             ['data' => 'title', 'name' => 'home_page_slider.title','title' => 'Title'],
-            ['data' => 'name', 'name' => 'categories.name','title' => 'Category'],
-            ['data' => 'sub_cat_nm', 'name' => 'sub_categories.sub_cat_nm','title' => 'Sub Category'],
-            ['data' => 'product_name', 'name' => 'products.product_name','title' => 'Product'],
             ['data' => 'status', 'name' => 'home_page_slider.status','title' => 'Status'],
             ['data' => 'created_at', 'name' => 'home_page_slider.created_at','title' => 'Scaned At'],
             ['data' => 'action', 'name' => 'action', 'orderable' => false, 'searchable' => false,'title' => 'Action'],
@@ -52,25 +50,20 @@ class HomePageSliderController extends Controller
             "order"=> [[ 0, "desc" ]],
           ]);
         if(request()->ajax()) {
-            $result = HomePageSlider::leftJoin('categories', 'categories.category_id', '=', 'home_page_slider.category')->leftJoin('sub_categories', 'sub_categories.sub_category_id', '=', 'home_page_slider.sub_category')->leftJoin('products', 'products.product_id', '=', 'home_page_slider.product')
-            ->select('home_page_slider.*', 'categories.name','sub_categories.name as sub_cat_nm','products.product_name');
+            $result = HomePageSlider::select('home_page_slider.*')->get();
             return $dataTable->dataTable($result)->toJson();
         }
         return view('admin.homePageSlider.list', compact('html'));
     }
 
     public function create(){
-        $category = Category::where('status','1')->get();
-        $subCategory = SubCategory::where('status','1')->get();
-        $product=Product::where('status','1')->get();
-        return view('admin.homePageSlider.create',compact('category','subCategory','product'));
+        return view('admin.homePageSlider.create');
     }
 
     public function store(Request $request)
     {
         $rules = array(
-            'category' => 'required',
-            'slider_selection' => 'required',
+            'title' => 'required',
             'image' => 'required',
         );
         $messages = [
@@ -81,16 +74,9 @@ class HomePageSliderController extends Controller
                             ->withErrors($validator)
                             ->withInput();
         } else {
-            // $category = implode(",",$request['category']);
-
             $record = new HomePageSlider();
             $record->title = $request['title'];
             $record->short_description = isset($request['short_description']) ? $request['short_description'] : '';
-            $record->category = isset($request['category']) ? $request['category'] : '';
-            $record->sub_category = isset($request['sub_category']) ? $request['sub_category'] : '';
-            $record->product = isset($request['product']) ? $request['product'] : '';
-            $record->slider_selection = isset($request['slider_selection']) ? $request['slider_selection'] : 'main';
-
             if($request->file('image') != null){
                 $newImageName="";
                 $folderPath = base_path().'/resources/uploads/sliderImage/';
@@ -115,8 +101,7 @@ class HomePageSliderController extends Controller
 
     public function show($id)
     {
-            $result = HomePageSlider::leftJoin('categories', 'categories.category_id', '=', 'home_page_slider.category')->leftJoin('sub_categories', 'sub_categories.sub_category_id', '=', 'home_page_slider.sub_category')->leftJoin('products', 'products.product_id', '=', 'home_page_slider.product')
-            ->select('home_page_slider.*', 'categories.name','sub_categories.name as sub_cat_nm','products.product_name')
+            $result = HomePageSlider::select('home_page_slider.*')
             ->where('home_page_slider.home_page_slider_id',$id)
             ->first();
 
@@ -133,11 +118,8 @@ class HomePageSliderController extends Controller
     public function edit($id)
     {
         $result = HomePageSlider::find($id);
-        $category = Category::select('category_id','name')->where('status','1')->get();
-        $subCategory = SubCategory::where('status','1')->get();
-        $product = Product::select('products.*')->where('status','1')->get();
         if(!empty($result)){
-            return view('admin.homePageSlider.edit')->with(compact('product','category','subCategory','result'));
+            return view('admin.homePageSlider.edit')->with(compact('result'));
         }
         else{
             Session::flash('message', 'Slider not found!');
@@ -149,8 +131,7 @@ class HomePageSliderController extends Controller
     public function update(Request $request)
     {
         $rules = array(
-            'category' => 'required',
-            'slider_selection' => 'required',
+            'title' => 'required',
         );
         $messages = [
 
@@ -180,25 +161,6 @@ class HomePageSliderController extends Controller
             if(isset($request['short_description']) && $request['short_description'] != ''){
                 $record->short_description = $request['short_description'];
             }
-            if(isset($request['category']) && $request['category'] != ''){
-                $record->category = $request['category'];
-            }
-            if(isset($request['sub_category'])){
-                $record->sub_category = $request['sub_category'];
-            }
-            if(isset($request['sub_category'])==null){
-                $record->sub_category = '';
-            }
-            if(isset($request['product'])){
-                $record->product = $request['product'];
-            }
-            if(isset($request['product'])==null){
-                $record->product = '';
-            }
-            if(isset($request['slider_selection']) && $request['slider_selection'] != ''){
-                $record->slider_selection = $request['slider_selection'];
-            }
-
             if($request->file('image') != null){
                 $uriSegments = explode("/", parse_url($record->image, PHP_URL_PATH));
                 $lastUriSegment = array_pop($uriSegments);

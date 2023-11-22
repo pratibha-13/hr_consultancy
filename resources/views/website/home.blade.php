@@ -3,32 +3,25 @@
 @section('content')
 
     <!-- Carousel Start -->
+    @if(count($mainSlider)>0)
     <div class="container-fluid p-0">
         <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{{ URL::asset('/resources/assets/website/img/carousel-1.jpg')}}" alt="Image">
+            @foreach($mainSlider as $key => $main)
+                <div class="carousel-item @if($key==0) active @endif">
+                    <img class="w-100" src="{{$main->image}}" alt="Image">
                     <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                         <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase">Business Consultancy</h5>
-                            <h1 class="display-1 text-white mb-md-4">We Provide Solution On Your Business</h1>
+                            <h5 class="text-white text-uppercase">{{$main->short_description}}</h5>
+                            <h1 class="display-1 text-white mb-md-4">{{$main->title}}</h1>
                             <a href="{{route('quote')}}" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
                             <a href="{{route('contact')}}" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="{{ URL::asset('/resources/assets/website/img/carousel-2.jpg')}}" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h5 class="text-white text-uppercase">Business Consultancy</h5>
-                            <h1 class="display-1 text-white mb-md-4">Take Our Help To Reach The Top Level</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 rounded-pill">Get Quote</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 rounded-pill">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
+            @if(count($mainSlider)>1)
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,8 +32,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
+            @endif
         </div>
     </div>
+    @endif
     <!-- Carousel End -->
 
 
@@ -237,19 +232,19 @@
                     <div class="row gx-3">
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" name="full_company_name" class="form-control" id="form-floating-1" placeholder="John Doe">
+                                <input required type="text" name="full_company_name" class="form-control" id="form-floating-1" placeholder="John Doe">
                                 <label for="form-floating-1">Full Name/Company Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input required type="email" name="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
                                 <label for="form-floating-2">Email address</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" name="contact_number" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input required type="text" name="contact_number" class="form-control" id="form-floating-2" placeholder="name@example.com">
                                 <label for="form-floating-2">Contact number</label>
                             </div>
                         </div>

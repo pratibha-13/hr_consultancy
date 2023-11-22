@@ -40,6 +40,21 @@
             <i class="fa fa-globe"></i> <span>Blog</span>
           </a>
         </li>
+        <li class="@if(Request::is('admin/blogComment') ||Request::is('admin/blogComment/*') ) active @endif treeview">
+          <a href="{{url('admin/blogComment')}}">
+            <i class="fa fa-globe"></i> <span>Blog Comment</span>
+          </a>
+        </li>
+        <li class="@if(Request::is('admin/service') ||Request::is('admin/service/*') ) active @endif treeview">
+          <a href="{{url('admin/service')}}">
+            <i class="fa fa-globe"></i> <span>Service</span>
+          </a>
+        </li>
+        <li class="@if(Request::is('admin/homePageSlider') ||Request::is('admin/homePageSlider/*') ) active @endif treeview">
+          <a href="{{url('admin/homePageSlider')}}">
+            <i class="fa fa-globe"></i> <span>Home Page Slider</span>
+          </a>
+        </li>
         <li class="@if(Request::is('admin/contact-us-messages') ||Request::is('admin/contact-us-messages/*') ) active @endif treeview">
           <a href="{{url('admin/contact-us-messages')}}">
             <i class="fa fa-envelope" aria-hidden="true"></i> <span>Contact Us Messages</span>

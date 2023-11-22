@@ -184,8 +184,12 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-
-
+                        "full_name":{
+                          required : true
+                        },
+                        "designation":{
+                          required : true
+                        },
                   },
                   messages: {
 

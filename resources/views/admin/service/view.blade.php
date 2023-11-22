@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
-@section('title')  Blog | @endsection
+@section('title')  Service | @endsection
 @section('content')
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Blog</h1>
+    <h1>Service</h1>
     <ol class="breadcrumb">
       <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li class="active">Blog</li>
+      <li class="active">Service</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -25,27 +25,17 @@
                                 <div class="table-responsive">
                                     <table class="table table-user-information">
                                         <tbody>
-                                          <tr>
-                                                <td><strong>Category</strong></td>
-                                                <td class="text-primary">{{$record->category}}</td>
+                                            <tr>
+                                                <td><strong>Title</strong></td>
+                                                <td class="text-primary">{{$record->title}}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Blog Title</strong></td>
-                                                <td class="text-primary">{{$record->blog_title}}</td>
+                                                <td><strong>Description</strong></td>
+                                                <td class="text-primary">{!! html_entity_decode($record->description)!!}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Blog Description</strong></td>
-                                                <td class="text-primary">{!! html_entity_decode($record->blog_description)!!}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Image</strong></td>
-                                                <td class="text-primary">
-                                                    <figure>
-                                                        <a href="@if(isset($record))@if($record->getOriginal('blog_image')){{$record->blog_image}} @endif @else {{ URL::asset('/resources/assets/img/user.png')}} @endif " target="_blank">
-                                                            <img src="@if(isset($record))@if($record->getOriginal('blog_image')){{$record->blog_image}} @endif @else {{ URL::asset('/resources/assets/img/default.png')}} @endif " class="gambar old_imageSub" id="item-img-output"  name="avatar" width="300px"/>
-                                                        </a>
-                                                    </figure>
-                                                </td>
+                                                <td><strong>Description</strong></td>
+                                                <td class="text-primary">{{$record->icon}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -59,7 +49,7 @@
             <div class="col-sm-12">
                 <div class="" style="border-top:0">
                     <div class="box-footer">
-                        <a type="button" href="{{route('blogComment.index')}}" id="cancelBtn" class="btn btn-default pull-right">Back</a>
+                        <a type="button" href="{{route('service.index')}}" id="cancelBtn" class="btn btn-default pull-right">Back</a>
                     </div>
                 </div>
             </div>

@@ -29,19 +29,19 @@
                     <div class="row gx-3">
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" name="full_company_name" class="form-control" id="form-floating-1" placeholder="John Doe">
+                                <input required type="text" name="full_company_name" class="form-control" id="form-floating-1" placeholder="John Doe">
                                 <label for="form-floating-1">Full Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input required type="email" name="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
                                 <label for="form-floating-2">Email address</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" name="contact_number" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input required type="text" name="contact_number" class="form-control" id="form-floating-2" placeholder="name@example.com">
                                 <label for="form-floating-2">Contact number</label>
                             </div>
                         </div>

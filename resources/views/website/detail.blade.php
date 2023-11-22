@@ -38,7 +38,7 @@
                             $date = \Carbon\Carbon::parse($comments->created_at);
                         @endphp
                             <div class="d-flex mb-4">
-                                <img src="{{ URL::asset('/resources/assets/website/img/user.jpg')}}" class="img-fluid rounded-circle" style="width: 45px; height: 45px;">
+                                <!-- <img src="{{ URL::asset('/resources/assets/website/img/user.jpg')}}" class="img-fluid rounded-circle" style="width: 45px; height: 45px;"> -->
                                 <div class="ps-3">
                                     <h6><a href="">{{$comments->user_name}}</a> <small><i>{{$date->day}} {{ $date->format('M') }} {{ $date->year }}</i></small></h6>
                                     <p>{{$comments->comments}}</p>
@@ -119,34 +119,18 @@
                 <!-- Category End -->
 
                 <!-- Recent Post Start -->
+                @if(count($recentblog) > 0)
                 <div class="mb-5">
                     <h2 class="mb-4">Recent Post</h2>
+                    @foreach($recentblog as $key => $value)
                     <div class="d-flex mb-3">
-                        <img class="img-fluid" src="{{ URL::asset('/resources/assets/website/img/blog-1.jpg')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">Lorem ipsum dolor sit amet adipis elit
+                        <img class="img-fluid" src="{{ $value->blog_image? $value->blog_image:URL::asset('/resources/assets/img/default.png')}}" alt="{{ $value->blog_image? $value->blog_image:URL::asset('/resources/assets/img/default.png')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
+                        <a href="{{url('/detail/'.$value->blog_id)}}" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">{{$value->blog_title}}
                         </a>
                     </div>
-                    <div class="d-flex mb-3">
-                        <img class="img-fluid" src="{{ URL::asset('/resources/assets/website/img/blog-1.jpg')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">Lorem ipsum dolor sit amet adipis elit
-                        </a>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <img class="img-fluid" src="{{ URL::asset('/resources/assets/website/img/blog-1.jpg')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">Lorem ipsum dolor sit amet adipis elit
-                        </a>
-                    </div>
-                    <div class="d-flex mb-3">
-                        <img class="img-fluid" src="{{ URL::asset('/resources/assets/website/img/blog-1.jpg')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">Lorem ipsum dolor sit amet adipis elit
-                        </a>
-                    </div>
-                    <div class="d-flex">
-                        <img class="img-fluid" src="{{ URL::asset('/resources/assets/website/img/blog-1.jpg')}}" style="width: 100px; height: 100px; object-fit: cover;" alt="">
-                        <a href="" class="h5 d-flex align-items-center bg-secondary px-3 mb-0">Lorem ipsum dolor sit amet adipis elit
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
+                @endif
                 <!-- Recent Post End -->
 
                 <!-- Image Start -->

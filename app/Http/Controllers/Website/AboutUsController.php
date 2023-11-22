@@ -18,6 +18,7 @@ use App\Blog;
 use App\Category;
 use App\BlogComment;
 use App\FAQ;
+use App\Service;
 class AboutUsController extends Controller
 {
     public function getAbout(Request $request)
@@ -28,7 +29,8 @@ class AboutUsController extends Controller
     }
     public function getService(Request $request)
     {
-        return view('website.service');
+        $service = Service::where('status','1')->orderBy('service_id','desc')->get();
+        return view('website.service',compact('service'));
     }
     public function getPrivacyPolicy()
     {
@@ -53,14 +55,16 @@ class AboutUsController extends Controller
     public function getBlog(Request $request)
     {
         $blogData=Blog::where('status','1')->orderBy('blog_id','desc');
+        $recentblog = Blog::where('status','1')->orderBy('blog_id','desc')->take(5)->get();
         $blog = $blogData->paginate(10);
         $category = Category::where('status','1')->get();
-        return view('website.blog',compact('blog','category'));
+        return view('website.blog',compact('blog','category','recentblog'));
     }
     public function blogDetail($id)
     {
         $blog = Blog::where('blog_id',$id)->where('status','1')->first();
-        $comment = BlogComment::where('blog_id',$id)->get();
+        $recentblog = Blog::where('status','1')->orderBy('blog_id','desc')->take(5)->get();
+        $comment = BlogComment::where('blog_id',$id)->where('status','1')->get();
         $commentCount = BlogComment::where('blog_id',$id)->count();
         $category = Category::where('status','1')->get();
         if($blog==null)
@@ -68,7 +72,7 @@ class AboutUsController extends Controller
             return view('website.page_not_found');
         }
         if(!empty($blog)){
-            return view('website.detail')->with(compact('blog','category','comment','commentCount'));
+            return view('website.detail')->with(compact('blog','category','comment','commentCount','recentblog'));
         }
         else{
             Session::flash('message', 'Blog not found!');

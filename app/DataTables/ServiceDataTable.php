@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\HomePageSlider;
+use App\Service ;
 use Yajra\DataTables\Services\DataTable;
 use App\Helper\GlobalHelper;
 use Auth;
 
-class HomePageSliderDataTable extends DataTable
+class ServiceDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,22 +19,22 @@ class HomePageSliderDataTable extends DataTable
     {
         //dd($query);
         return datatables($query)
-        ->addColumn('action', function ($homePageSlider) {
-             $id = $homePageSlider->home_page_slider_id;
+        ->addColumn('action', function ($service) {
+             $id = $service->service_id;
 
-                    $edit = '<a class="label label-success" href="' . route('homePageSlider.edit',$id) . '"  title="Update"><i class="fa fa-edit"></i>&nbsp</a>';
+                    $edit = '<a class="label label-success" href="' . route('service.edit',$id) . '"  title="Update"><i class="fa fa-edit"></i>&nbsp</a>';
 
                     $delete = '<a class="label label-danger" href="javascript:;"  title="Delete" onclick="deleteConfirm('.$id.')"><i class="fa fa-trash"></i>&nbsp</a>';
 
 
-                    $view = '<a class="label label-primary" href="'. route('homePageSlider.show',$id).'"  title="View"><i class="fa fa-eye"></i>&nbsp</a>';
+                    $view = '<a class="label label-primary" href="'. route('service.show',$id).'"  title="View"><i class="fa fa-eye"></i>&nbsp</a>';
 
 
-               return $view.' '.$edit.' '.$delete;
+               return $view.' '. $edit .' '.$delete;
             })
-        ->addColumn('status',  function($homePageSlider) {
-            $id = $homePageSlider->home_page_slider_id;
-            $status = $homePageSlider->status;
+        ->addColumn('status',  function($service) {
+            $id = $service->service_id;
+            $status = $service->status;
             $class='text-danger';
             $label='Deactive';
             if($status==1)
@@ -47,8 +47,8 @@ class HomePageSliderDataTable extends DataTable
 
         })
 
-        ->editColumn('created_at', function($homePageSlider) {
-            return GlobalHelper::getFormattedDate($homePageSlider->created_at);
+        ->editColumn('created_at', function($service) {
+            return GlobalHelper::getFormattedDate($service->created_at);
         })
         ->rawColumns(['status','action']);//->toJson();
     }
@@ -58,9 +58,9 @@ class HomePageSliderDataTable extends DataTable
      * @param \App\Product $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Product $model)
+    public function query(Service $model)
     {
-        return $model->newQuery()->select('home_page_slider_id', 'title', 'short_description','image','status','created_at', 'updated_at');
+        return $model->newQuery()->select('service_id','status','created_at', 'updated_at');
     }
 
     /**
@@ -84,7 +84,7 @@ class HomePageSliderDataTable extends DataTable
      */
     protected function getColumns()
     {
-        return ['home_page_slider_id', 'title', 'short_description','image','status','created_at', 'updated_at'
+        return ['service_id', 'status','created_at', 'updated_at'
         ];
     }
 
@@ -95,6 +95,6 @@ class HomePageSliderDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'HomePageSlider' . date('YmdHis');
+        return 'Service' . date('YmdHis');
     }
 }

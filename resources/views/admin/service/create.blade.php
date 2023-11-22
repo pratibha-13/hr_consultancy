@@ -1,5 +1,5 @@
 @section('title')
-Add Our Team |
+Service |
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ URL::asset('/resources/assets/admin/plugins/lightbox2-master/dist/css/lightbox.css')}}">
@@ -30,63 +30,57 @@ Add Our Team |
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Add Our Team</h1>
+        <h1>Add Service</h1>
         <ol class="breadcrumb">
             <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Add New Our Team</li>
+            <li class="active">Add New Service</li>
         </ol>
     </section>
     <section class="content">
         <div class="row">
-            <form class="" id="dataForms" role="form" action="{{route('ourTeam.store')}}" method="post" enctype="multipart/form-data" >
+            <form class="" id="dataForms" role="form" action="{{route('service.store')}}" method="post" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 <div class="col-sm-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Our Team Detail</h3>
+                            <h3 class="box-title">Blog Detail</h3>
 
                         </div>
                         <div class="box-body">
-                            <div class="form-group {{ $errors->has('full_name') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="full_name">Full Name <span class="colorRed"> *</span></label>
+                            <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="title">Title <span class="colorRed"> *</span></label>
                                 <div class="">
-                                    <input maxlength="100" type="text" id="full_name" name="full_name" class="form-control" value="{{old('full_name')}}" placeholder="Name">
-                                    @if ($errors->has('full_name'))
+                                    <input maxlength="30" type="text" id="title" name="title" class="form-control" value="{{old('title')}}" placeholder="Title">
+                                    @if ($errors->has('title'))
                                     <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('full_name') }}</strong>
-                                    </span>
-                                    @endif
-                                  </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('designation') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="designation">Designation <span class="colorRed"> *</span></label>
-                                <div class="">
-                                    <input maxlength="100" type="text" id="designation" name="designation" class="form-control" value="{{old('designation')}}" placeholder="Name">
-                                    @if ($errors->has('designation'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('designation') }}</strong>
-                                    </span>
-                                    @endif
-                                  </div>
-                            </div>
-                            <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }}">
-                                <label for="" class=" control-label post_data_label" >Profile</label><span class="colorRed"> *</span> <br>
-                                <div class="vc_column-inner ">
-                                    <label class="cabinet center-block">
-                                        <figure>
-                                            <img src="{{ URL::asset('/resources/assets/img/default.png')}}" class="gambar" id="item-img-output"  name="avatar" style="max-width: 25%"/>
-                                        </figure>
-                                        <p></p>
-                                        <input type="file" accept="image/png, image/jpeg, image/jpg" class="item-img file" id="image" name="image"/>
-                                    </label>
-                                     @if ($errors->has('image'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('image') }}</strong>
+                                        <strong>{{ $errors->first('title') }}</strong>
                                     </span>
                                     @endif
                                 </div>
-                              </div>
-
+                            </div>
+                            <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="description">Description </label>
+                                <div class="">
+                                    <textarea  id="description" name="description" style="width: 1070px;border-color: #d2d6de"></textarea>
+                                    @if ($errors->has('description'))
+                                    <span class="help-block alert alert-danger">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('icon') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="icon">Icon <span class="colorRed"> *</span></label>
+                                <div class="">
+                                    <input type="text" id="icon" name="icon" class="form-control" value="{{old('icon')}}" placeholder="Icon">
+                                    @if ($errors->has('icon'))
+                                    <span class="help-block alert alert-danger">
+                                        <strong>{{ $errors->first('icon') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <label>Icon should be fontawesome class</label>
+                            </div>
                             <span class="help-block"> <span class="colorRed"> *</span> mentioned fields are mandatory.</span>
                             <div class="col-sm-12">
                                 <div class="" style="border-top:0">
@@ -156,6 +150,7 @@ Add Our Team |
     <script src="{{URL::asset('/resources/assets/custom/image_cropping/main.js')}}"></script>
     {{-- <script src="{{URL::asset('/resources/assets/custom/image_cropping/exif.js')}}"></script> --}}
     <script src="{{URL::asset('resources/assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+    <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
     @if(Session::has('message'))
         <script>
@@ -182,10 +177,13 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-                        "full_name":{
+                        "title":{
                           required : true
                         },
-                        "designation":{
+                        "description":{
+                          required : true
+                        },
+                        "icon":{
                           required : true
                         },
                   },
@@ -204,75 +202,7 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
     });
 
 $("#cancelBtn").click(function () {
-    window.location.href = "{{route('ourTeam.index')}}";
+    window.location.href = "{{route('service.index')}}";
 });
-</script>
-<script type="text/javascript">
-    // Start upload preview image
-    var FLIP = 2;
-    var NORMAL = 1;
-    var orientation = NORMAL;
-    var $uploadCrop1, tempFilename, rawImg, imageId;
-    var fileTypes = ['jpg', 'jpeg', 'png'];
-        function readFile(input) {
-            if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    var file = input.files[0]; // Get your file here
-                    var fileExt = file.type.split('/')[1]; // Get the file extension
-                    if (fileTypes.indexOf(fileExt) !== -1) {
-                        reader.onload = function (e) {
-                            // $('.upload-demo').addClass('ready');
-                            // $('#cropImagePop').modal('show');
-                            rawImg = e.target.result;
-                        }
-                        reader.readAsDataURL(input.files[0]);
-
-                    }else{
-                        swal("Only JPEG, PNG, JPG file types are supported");
-                        $(".item-img").val("");
-                    }
-                }
-                else {
-                swal("Please select an image");
-                $("#main_image").val("");
-                $("#item-img-output").attr("src",SITE_URL + "/resources/assets/img/default.png");
-
-            }
-        }
-
-
-        $('#Flip').click(function() {
-            orientation = orientation == NORMAL ? FLIP : NORMAL;
-            $uploadCrop1.croppie('bind', {
-                url: rawImg,
-                orientation: orientation,
-            });
-        });
-        $('#rotate').click(function() {
-            $uploadCrop1.croppie('rotate', parseInt($(this).data('deg')));
-        });
-        $('.item-img').on('change', function () { imageId = $(this).data('id'); tempFilename = $(this).val();
-        $('#cancelCropBtn').data('id', imageId); readFile(this); });
-        $("#cancelCropBtn").click(function(){
-           $(".item-img").val("");
-           $("#main_image").val("");
-           $("#item-img-output").attr("src",SITE_URL + "/resources/assets/img/default.png");
-        });
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#item-img-output').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#image").change(function () {
-        readURL(this);
-    });
 </script>
 @endsection

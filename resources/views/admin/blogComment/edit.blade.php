@@ -1,5 +1,5 @@
 @section('title')
-Blog Detail |
+Blog Comment Detail |
 @endsection
 
 @section('css')
@@ -32,82 +32,65 @@ Blog Detail |
 @section('content')
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Update Blog</h1>
+        <h1>Update Blog Comment</h1>
         <ol class="breadcrumb">
             <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Update Blog</li>
+            <li class="active">Update Blog Comment</li>
         </ol>
     </section>
     <section class="content">
         <div class="row">
-            <form class="" id="dataForm" role="form" action="{{route('blog.update',$record->blog_id)}}" method="POST" enctype="multipart/form-data" >
+            <form class="" id="dataForm" role="form" action="{{route('blogComment.update',$record->blog_comment_id)}}" method="POST" enctype="multipart/form-data" >
                 {{ csrf_field() }}
                 <input name="_method" type="hidden" value="PATCH">
                 <div class="col-sm-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Blog Detail</h3>
+                            <h3 class="box-title">Blog Comment Detail</h3>
                         </div>
                         <div class="box-body">
-                            <input type="hidden" id="id" name="id" value="{{$record->blog_id}}"/>
+                            <input type="hidden" id="id" name="id" value="{{$record->blog_comment_id}}"/>
 
-                            <div class="form-group {{ $errors->has('category') ? ' has-error' : '' }}">
-                                    <label  class="control-label" for="category">Category <span class="colorRed"> *</span></label>
-                                    <div class="">
-                                      <?php $chkk = explode(
-                                          ",",
-                                          $record->category_id
-                                      ); ?>
-                                    <select name="category" class="form-control" id="category">
-                                      <option></option>
-                                      @foreach($category as $value)
-                                      <option value="{{ $value->category_id }}" @if(in_array($value->category_id, $chkk)) selected @endif>{{ $value->name }}</option>
-                                      @endforeach
-                                    </select>
-                                    @if ($errors->has('category'))
-                                    <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('category') }}</strong>
-                                    </span>
-                                    @endif
-                                    </div>
+                            <div class="form-group">
+                                <label  class=" control-label" for="">Blog Title <span class="colorRed"> *</span></label>
+                                <div class="">
+                                    <input maxlength="100" type="text" id="" name="blog_id" class="form-control" value="{{$blog->blog_title}}" readonly>
+                                </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('blog_title') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="blog_title">Blog Title <span class="colorRed"> *</span></label>
+                            <div class="form-group {{ $errors->has('user_name') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="user_name">User Name <span class="colorRed"> *</span></label>
                                 <div class="">
-                                    <input maxlength="100" type="text" id="blog_title" name="blog_title" class="form-control" value="@if(!empty(old('blog_title'))){{old('blog_title')}}@else{{$record->blog_title}}@endif" placeholder="Type Blog Title here">
-                                    @if ($errors->has('blog_title'))
+                                    <input maxlength="100" type="text" id="user_name" name="user_name" class="form-control" value="@if(!empty(old('user_name'))){{old('user_name')}}@else{{$record->user_name}}@endif" readonly>
+                                    @if ($errors->has('user_name'))
                                     <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('blog_title') }}</strong>
+                                        <strong>{{ $errors->first('user_name') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group {{ $errors->has('blog_description') ? ' has-error' : '' }}">
-                                <label  class=" control-label" for="blog_description"> Blog Description </label>
+                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="email">Blog Title <span class="colorRed"> *</span></label>
                                 <div class="">
-                                    <textarea id="blog_description" name="blog_description">@if(isset($record)) @if(!empty(old('blog_description'))){{old('blog_description')}}@else{{$record->blog_description}}@endif @endif</textarea>
-
-                                    @if ($errors->has('blog_description'))
+                                    <input maxlength="100" type="text" id="email" name="email" class="form-control" value="@if(!empty(old('email'))){{old('email')}}@else{{$record->email}}@endif" readonly>
+                                    @if ($errors->has('email'))
                                     <span class="help-block alert alert-danger">
-                                        <strong>{{ $errors->first('blog_description') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                     @endif
-                                  </div>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="" class=" control-label post_data_label" >Blog Image</label><span class="colorRed"> *</span> <br>
-                                <div class="vc_column-inner ">
-                                    <label class="cabinet center-block">
-                                        <figure>
-                                            <img src="{{ $record->blog_image? $record->blog_image:URL::asset('/resources/assets/img/default.png')}}" class="gambar" id="item-img-output"  name="avatar"  style="height:250px;"/>
-                                        </figure>
-                                        <p></p>
-
-                                        <input type="file" accept="image/png, image/jpeg, image/jpg" class="item-img file " name="image" id="image"/>
-                                    </label>
+                            <div class="form-group {{ $errors->has('comments') ? ' has-error' : '' }}">
+                                <label  class=" control-label" for="comments">Blog Title <span class="colorRed"> *</span></label>
+                                <div class="">
+                                <textarea id="comments" name="comments">@if(isset($record)) @if(!empty(old('comments'))){{old('comments')}}@else{{$record->comments}}@endif @endif</textarea>
+                                 @if ($errors->has('comments'))
+                                    <span class="help-block alert alert-danger">
+                                        <strong>{{ $errors->first('comments') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
 
@@ -207,12 +190,8 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
                     errorClass: 'text-red',
                     ignore: [],
                     rules: {
-                        "blog_title":{
-                          required : true
-                        },
-                        "blog_description":{
-                          required : true
-                        },
+
+
                   },
                   messages: {
 
@@ -229,59 +208,12 @@ var SITE_URL = "<?php echo URL::to('/'); ?>";
     });
 
 $("#cancelBtn").click(function () {
-    window.location.href = "{{route('blog.index')}}";
+    window.location.href = "{{route('blogComment.index')}}";
 });
 </script>
 <script type="text/javascript">
-    // Start upload preview image
-    var FLIP = 2;
-    var NORMAL = 1;
-    var orientation = NORMAL;
-    var $uploadCrop1, tempFilename, rawImg, imageId;
-    var fileTypes = ['jpg', 'jpeg', 'png'];
-        function readFile(input) {
-            if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    var file = input.files[0]; // Get your file here
-                    var fileExt = file.type.split('/')[1]; // Get the file extension
-                    if (fileTypes.indexOf(fileExt) !== -1) {
-                        reader.onload = function (e) {
-                            // $('.upload-demo').addClass('ready');
-                            // $('#cropImagePop').modal('show');
-                            rawImg = e.target.result;
-                        }
-                        reader.readAsDataURL(input.files[0]);
-
-                    }else{
-                        swal("Only JPEG, PNG, JPG file types are supported");
-                        $(".item-img").val("");
-                    }
-                }
-                else {
-                swal("Please select an image");
-                $("#main_image").val("");
-                $("#item-img-output").attr("src",SITE_URL + "/resources/assets/img/default.png");
-
-            }
-        }
-
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#item-img-output').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#image").change(function () {
-        readURL(this);
-    });
     $(function () {
-        CKEDITOR.replace('blog_description');
+        CKEDITOR.replace('comments');
     });
 </script>
 @endsection

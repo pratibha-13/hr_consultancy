@@ -1,5 +1,5 @@
 @section('title')
-Blog |
+Blog Comment|
 @endsection
 @extends('admin.layouts.app')
 @section('content')
@@ -7,19 +7,16 @@ Blog |
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Blog</h1>
+        <h1>Blog Comment</h1>
         <ol class="breadcrumb">
             <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Blog</li>
+            <li class="active">Blog Comment</li>
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="row">
-                <div class="col-sm-2 pull-right" style="padding-bottom: 10px;">
-                    <a href="{{route('blog.create')}}"><button type="button" class="btn btn-block btn-primary">New Blog</button></a>
-                </div>
             <div class="col-xs-12">
                 <div class="box">
                     <!-- /.box-header -->
@@ -87,7 +84,7 @@ Blog |
                     $.ajax({
                         type :'POST',
                         data : {id:dbid},
-                        url  : 'blog/status-change',
+                        url  : 'blogComment/status-change',
                         success  : function(response) {
                             if (response == 'Active') {
                                 $('#'+row+'').text('Active').removeClass('text-danger').addClass('text-green');
@@ -119,13 +116,13 @@ Blog |
             callback: function(result){
                 if (result){
                     $.ajax({
-                        url: SITE_URL + '/admin/blog/'+id,
+                        url: SITE_URL + '/admin/blogComment/'+id,
                         type: "DELETE",
                         cache: false,
                         data:{ _token:'{{ csrf_token() }}'},
                         success: function (data , textStatus, xhr) {
                             if(data== true && textStatus=='success' && xhr.status=='200'){
-                                toastr.warning('Blog Deleted !!');
+                                toastr.warning('Blog Comment Deleted !!');
                                 $('#datatable').DataTable().ajax.reload(null, false);
                             }else {
                                 toastr.error(data);

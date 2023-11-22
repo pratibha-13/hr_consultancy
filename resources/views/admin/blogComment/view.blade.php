@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
-@section('title')  Blog | @endsection
+@section('title')  Blog Comment | @endsection
 @section('content')
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1>Blog</h1>
+    <h1>Blog Comment</h1>
     <ol class="breadcrumb">
       <li><a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li class="active">Blog</li>
+      <li class="active">Blog Comment</li>
     </ol>
   </section>
   <!-- Main content -->
@@ -26,26 +26,20 @@
                                     <table class="table table-user-information">
                                         <tbody>
                                           <tr>
-                                                <td><strong>Category</strong></td>
-                                                <td class="text-primary">{{$record->category}}</td>
+                                                <td><strong>Blog</strong></td>
+                                                <td class="text-primary">{{$blog->blog_title}}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Blog Title</strong></td>
-                                                <td class="text-primary">{{$record->blog_title}}</td>
+                                                <td><strong>User Name</strong></td>
+                                                <td class="text-primary">{{$record->user_name}}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Blog Description</strong></td>
-                                                <td class="text-primary">{!! html_entity_decode($record->blog_description)!!}</td>
+                                                <td><strong>Email</strong></td>
+                                                <td class="text-primary">{{$record->email}}</td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Image</strong></td>
-                                                <td class="text-primary">
-                                                    <figure>
-                                                        <a href="@if(isset($record))@if($record->getOriginal('blog_image')){{$record->blog_image}} @endif @else {{ URL::asset('/resources/assets/img/user.png')}} @endif " target="_blank">
-                                                            <img src="@if(isset($record))@if($record->getOriginal('blog_image')){{$record->blog_image}} @endif @else {{ URL::asset('/resources/assets/img/default.png')}} @endif " class="gambar old_imageSub" id="item-img-output"  name="avatar" width="300px"/>
-                                                        </a>
-                                                    </figure>
-                                                </td>
+                                                <td><strong>Comment</strong></td>
+                                                <td class="text-primary">{!! html_entity_decode($record->comments)!!}</td>
                                             </tr>
                                         </tbody>
                                     </table>
