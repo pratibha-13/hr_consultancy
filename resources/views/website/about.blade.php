@@ -1,5 +1,6 @@
 @extends('weblayout.app')
-@section('title', 'About')
+@section('title', 'About Us')
+@section('image', $image)
 @section('content')
 
 

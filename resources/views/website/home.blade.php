@@ -1,5 +1,6 @@
 @extends('weblayout.app')
 @section('title', 'Home')
+@section('image', $image)
 @section('content')
 
     <!-- Carousel Start -->

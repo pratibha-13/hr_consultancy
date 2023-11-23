@@ -31,6 +31,7 @@ class HomeController extends Controller
         $ourClientSay=OurClientSay::where('status','1')->get();
         $blog=Blog::where('status','1')->orderBy('blog_id','desc')->take(3)->get();
         $mainSlider=HomePageSlider::where('status','1')->orderBy('home_page_slider_id','desc')->get();
-        return view('website.home',compact(['ourTeam','ourClientSay','blog','mainSlider']));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.home',compact(['ourTeam','ourClientSay','blog','mainSlider','image']));
     }
 }

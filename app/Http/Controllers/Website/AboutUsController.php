@@ -24,33 +24,38 @@ class AboutUsController extends Controller
     public function getAbout(Request $request)
     {
         $ourTeam=OurTeam::take(3)->orderBy('our_team_id','desc')->get();
-        // $about=CMSPage
-        return view('website.about',compact('ourTeam'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.about')->with(compact('ourTeam','image'));
     }
     public function getService(Request $request)
     {
         $service = Service::where('status','1')->orderBy('service_id','desc')->get();
-        return view('website.service',compact('service'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.service')->with(compact('service','image'));
     }
     public function getPrivacyPolicy()
     {
         $privacyPolicy = CMSPage::where('slug','privacy-policy')->first();
-        return view('website.privacyPolicy')->with(compact('privacyPolicy'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.privacyPolicy')->with(compact('privacyPolicy','image'));
     }
     public function getTerms()
     {
         $terms = CMSPage::where('slug','terms-and-conditions')->first();
-        return view('website.termsConditions')->with(compact('terms'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.termsConditions')->with(compact('terms','image'));
     }
     public function getFaq()
     {
         $generalFaq = FAQ::where('type','general')->get();
         $otherFaq = FAQ::where('type','other')->get();
-        return view('website.faq', compact(['generalFaq','otherFaq']));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.faq')->with(compact(['generalFaq','otherFaq','image']));
     }
     public function getContact(Request $request)
     {
-        return view('website.contact');
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.contact')->with(compact('image'));
     }
     public function getBlog(Request $request)
     {
@@ -58,7 +63,8 @@ class AboutUsController extends Controller
         $recentblog = Blog::where('status','1')->orderBy('blog_id','desc')->take(5)->get();
         $blog = $blogData->paginate(10);
         $category = Category::where('status','1')->get();
-        return view('website.blog',compact('blog','category','recentblog'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.blog')->with(compact('blog','category','recentblog','image'));
     }
     public function blogDetail($id)
     {
@@ -67,12 +73,13 @@ class AboutUsController extends Controller
         $comment = BlogComment::where('blog_id',$id)->where('status','1')->get();
         $commentCount = BlogComment::where('blog_id',$id)->count();
         $category = Category::where('status','1')->get();
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
         if($blog==null)
         {
             return view('website.page_not_found');
         }
         if(!empty($blog)){
-            return view('website.detail')->with(compact('blog','category','comment','commentCount','recentblog'));
+            return view('website.detail')->with(compact('blog','category','comment','commentCount','recentblog','image'));
         }
         else{
             Session::flash('message', 'Blog not found!');
@@ -82,21 +89,25 @@ class AboutUsController extends Controller
     }
     public function getFeature(Request $request)
     {
-        return view('website.feature');
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.feature')->with(compact('image'));
     }
     public function getQuote(Request $request)
     {
-        return view('website.quote');
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.quote')->with(compact('image'));
     }
     public function getTeam(Request $request)
     {
         $ourTeam=OurTeam::orderBy('our_team_id','desc')->get();
-        return view('website.team',compact('ourTeam'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.team',compact('ourTeam','image'));
     }
     public function getTestimonial(Request $request)
     {
         $ourClientSay=OurClientSay::where('status','1')->get();
-        return view('website.testimonial',compact('ourClientSay'));
+        $image=(url('/resources/assets/website/img/logo_dark.png'));
+        return view('website.testimonial',compact('ourClientSay','image'));
     }
 
     public function store(Request $request)

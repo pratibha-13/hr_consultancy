@@ -5,8 +5,9 @@
     <title>@yield('title') {{ config('app.name', 'Xcash') }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="HR - Consultancy" name="keywords">
+    <meta property="og:type" content="article" />
     <meta property="og:description" content="@yield('description')" />
-
+    <meta property="og:image" content="@yield('image')" />
     <!-- Favicon -->
     <link href="{{ URL::asset('/resources/assets/website/img/favicon.ico')}}" rel="icon">
 

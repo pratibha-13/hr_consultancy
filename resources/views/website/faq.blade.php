@@ -1,5 +1,6 @@
 @extends('weblayout.app')
 @section('title', 'FAQs')
+@section('image', $image)
 @section('content')
 <link rel="stylesheet" href="{{ URL::asset('/resources/assets/website/css/ionicons.min.css')}}">
 <style>

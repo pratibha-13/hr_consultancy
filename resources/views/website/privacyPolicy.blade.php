@@ -1,5 +1,6 @@
 @extends('weblayout.app')
 @section('title', 'Privacy Policy')
+@section('image', $image)
 @section('content')
 
 
